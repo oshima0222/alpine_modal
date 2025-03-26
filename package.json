@@ -1,0 +1,36 @@
+{
+  "name": "alpine_modal",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build && html-beautify dist/**/*.html && esbuild src/public/assets/js/*.js --bundle --minify --outdir=dist/assets/js/",
+    "prettier": "prettier --write 'src/**/*.{js,scss,html}'",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.20",
+    "css-declaration-sorter": "^7.2.0",
+    "js-beautify": "^1.15.4",
+    "postcss": "^8.5.3",
+    "postcss-normalize-charset": "^7.0.0",
+    "postcss-sort-media-queries": "^5.2.0",
+    "prettier": "^3.5.3",
+    "sass": "^1.85.1",
+    "vite": "^6.2.0",
+    "vite-plugin-handlebars": "^2.0.0"
+  },
+  "browserslist": [
+    "last 3 versions",
+    "> 5%",
+    "Firefox ESR",
+    "not dead"
+  ],
+  "dependencies": {
+    "alpinejs": "^3.14.8",
+    "gsap": "^3.12.7",
+    "pixi.js": "^8.8.1",
+    "swiper": "^11.2.6"
+  }
+}

@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Alpine.js Modals</title>
+    <link rel="stylesheet" href="./scss/style.scss" />
+    <style>
+      /* ... (スタイル、必要に応じて Swiper のスタイルも) ... */
+    </style>
+  </head>
+  <body>
+    <div x-data="modalComponent">
+      <section class="feature">
+        <h2>特徴</h2>
+        <template x-for="feature in features" :key="feature.id">
+          <div>
+            <h4><span x-text="feature.name"></span></h4>
+            <button @click="openModal('feature', feature.id)">詳細</button>
+          </div>
+        </template>
+      </section>
+
+      <section class="spec">
+        <h2>仕様</h2>
+        <template x-for="spec in specs" :key="spec.id">
+          <div>
+            <h4><span x-text="spec.name"></span></h4>
+            <button @click="openModal('spec', spec.id)">詳細</button>
+          </div>
+        </template>
+      </section>
+
+      <section class="options">
+        <h2>オプション</h2>
+        <template x-for="product in products" :key="product.id">
+          <div>
+            <h3><span x-text="product.name"></span></h3>
+            <template x-for="option in product.options" :key="option.id">
+              <div>
+                <button
+                  @click="openModal('option', `${product.id}-${option.id}`)"
+                >
+                  <span x-text="option.name"></span>
+                </button>
+              </div>
+            </template>
+          </div>
+        </template>
+      </section>
+
+      <template
+        x-if="modalOpen && currentModalContent && currentModalContent.section !== 'option'"
+      >
+        <div
+          class="modal-overlay fade"
+          @click.self="closeModal"
+          @keydown.escape="closeModal"
+          x-transition:enter="fade-enter-active"
+          x-transition:enter-start="fade-enter-from"
+          x-transition:leave="fade-leave-active"
+          x-transition:leave-end="fade-leave-to"
+          tabindex="-1"
+        >
+          <div
+            class="modal-content slide"
+            @click.stop
+            x-transition:enter="slide-enter-active"
+            x-transition:enter-start="slide-enter-from"
+            x-transition:leave="slide-leave-active"
+            x-transition:leave-end="slide-leave-to"
+          >
+            <button class="modal-close" @click="closeModal">&times;</button>
+            <h4 x-text="currentModalContent?.title"></h4>
+            <p x-text="currentModalContent?.description"></p>
+
+            <div x-show="currentModalContent">
+              <button
+                @click="gotoModal(currentModalContent.section, currentModalContent.prevId)"
+                x-show="currentModalContent.hasPrev"
+              >
+                前へ
+              </button>
+              <button
+                @click="gotoModal(currentModalContent.section, currentModalContent.nextId)"
+                x-show="currentModalContent.hasNext"
+              >
+                次へ
+              </button>
+            </div>
+          </div>
+        </div>
+      </template>
+
+      <template
+        x-if="modalOpen && currentModalContent && currentModalContent.section === 'option'"
+      >
+        <div
+          class="modal-overlay fade"
+          @click.self="closeModal"
+          @keydown.escape="closeModal"
+          x-transition:enter="fade-enter-active"
+          x-transition:enter-start="fade-enter-from"
+          x-transition:leave="fade-leave-active"
+          x-transition:leave-end="fade-leave-to"
+          tabindex="-1"
+        >
+          <div
+            class="modal-content slide"
+            @click.stop
+            x-transition:enter="slide-enter-active"
+            x-transition:enter-start="slide-enter-from"
+            x-transition:leave="slide-leave-active"
+            x-transition:leave-end="slide-leave-to"
+          >
+            <button class="modal-close" @click="closeModal">&times;</button>
+            <div class="swiper" x-ref="swiperContainer">
+              <div class="swiper-wrapper">
+                <template x-for="option in currentOptions" :key="option.id">
+                  <div class="swiper-slide">
+                    <h4><span x-text="option.name"></span></h4>
+                    <p x-text="option.description"></p>
+                  </div>
+                </template>
+              </div>
+              <div class="swiper-button-next"></div>
+              <div class="swiper-button-prev"></div>
+            </div>
+          </div>
+        </div>
+      </template>
+    </div>
+
+    <script type="module" src="./js/main.js"></script>
+  </body>
+</html>
