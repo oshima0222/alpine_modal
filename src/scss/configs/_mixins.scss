@@ -19,6 +19,23 @@
   }
 }
 
+// メディアクエリ Mixin (max-width)  ---
+// 指定したブレークポイントの幅未満に適用
+// 例: @include mq-down(lg) { ... } -> @media (max-width: 1023px) { ... }
+@mixin mq-down($breakpoint-key) {
+  @if map.has-key($breakpoints, $breakpoint-key) {
+    // 指定されたブレークポイントの幅から 1px 引いた値を max-width に設定
+    $max-width: map.get($breakpoints, $breakpoint-key) - 1px;
+    @media (max-width: $max-width) {
+      @content;
+    }
+  } @else {
+    // キーが見つからない場合に警告を表示
+    @warn "Breakpoint key '#{$breakpoint-key}' not found in $breakpoints map for mq-down. Check _variables.scss";
+  }
+}
+
+
 //単位を除く関数 ($number)に単位を除外したい数値を入れる
 @function strip-unit($number){
   @if meta.type-of($number) == 'number' and not math.is-unitless($number){
