@@ -1,0 +1,17 @@
+// scss/_mixins.scss
+@use 'variables' as *; // _variables.scss を読み込む (ファイル名注意)
+
+// メディアクエリ Mixin (min-width)
+// 使用例: @include mq(md) { ... }
+@mixin mq($breakpoint-key) {
+  // $breakpoints マップにキーが存在するか確認
+  @if map-has-key($breakpoints, $breakpoint-key) {
+    // メディアクエリを出力
+    @media (min-width: map-get($breakpoints, $breakpoint-key)) {
+      @content; // Mixinに渡されたスタイルを展開
+    }
+  } @else {
+    // キーが見つからない場合に警告を表示
+    @warn "Breakpoint key '#{$breakpoint-key}' not found in $breakpoints map. Check _variables.scss";
+  }
+}
