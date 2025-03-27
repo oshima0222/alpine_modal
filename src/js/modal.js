@@ -5,31 +5,51 @@ export default function modalComponent() {
   return {
     modalOpen: false,
     currentModalContent: null, // feature, spec, option 共通
-    currentOptions: [], // option 用 (Swiper)
     swiper: null, // Swiper インスタンス
     scrollPosition: 0,
 
     features: [], // 初期値は空。init() で JSON から読み込む
     specs: [], // 初期値は空。init() で JSON から読み込む
-    products: [], // 初期値を空にする
+
+    allTypes: [],
+    allLineup: [],
+    allAttachments: [],
+    selectedType: "ochp", // 初期選択タイプ (ID)
+    selectedLineup: "OC-17HP", // 初期選択ラインナップ (ID)
+    displayedLineup: [], // フィルタリングされたラインナップ
+    displayedAttachments: [], // フィルタリングされたアタッチメント
 
     async init() {
       // async キーワードを追加
       try {
         // Promise.all で JSON ファイルを並行して読み込む
-        const [featuresRes, specsRes, productsRes] = await Promise.all([
-          fetch("/data/features.json"),
-          fetch("/data/specs.json"),
-          fetch("/data/products.json"), // products.json の読み込みを追加
-        ]);
-        if (!featuresRes.ok || !specsRes.ok || !productsRes.ok) {
+        const [typesRes, lineupRes, attachmentsRes, featuresRes, specsRes] =
+          await Promise.all([
+            fetch("/data/types.json"),
+            fetch("/data/lineup.json"),
+            fetch("/data/attachments.json"),
+            fetch("/data/features.json"), // ★ 追加
+            fetch("/data/specs.json"), // ★ 追加
+          ]);
+        if (
+          !typesRes.ok ||
+          !lineupRes.ok ||
+          !attachmentsRes.ok ||
+          !featuresRes.ok ||
+          !specsRes.ok
+        ) {
           throw new Error("Failed to fetch data");
         }
-        this.features = await featuresRes.json();
-        this.specs = await specsRes.json();
-        this.products = await productsRes.json(); // 読み込んだデータを格納
+        this.allTypes = await typesRes.json();
+        this.allLineup = await lineupRes.json();
+        this.allAttachments = await attachmentsRes.json();
+        this.features = await featuresRes.json(); // ★ 追加
+        this.specs = await specsRes.json(); // ★ 追加
+        // --- 初期表示のフィルタリング ---
+        this.filterLineup();
+        this.filterAttachments();
       } catch (error) {
-        console.error("Error loading modal data:", error);
+        console.error("Error loading data:", error);
       }
 
       this.$watch("modalOpen", (value) => {
@@ -49,33 +69,63 @@ export default function modalComponent() {
         }
       });
 
-      // currentOptions の監視 (変更なし)
-      this.$watch("currentOptions", () => {
-        if (this.swiper) {
-          this.$nextTick(() => {
-            this.swiper.update();
-          });
+      // --- selectedType の変更を監視してラインナップとアタッチメントを更新 ---
+      this.$watch("selectedType", () => {
+        this.filterLineup();
+        // タイプが変わったら、ラインナップの先頭をデフォルト選択
+        if (this.displayedLineup.length > 0) {
+          this.selectedLineup = this.displayedLineup[0].id;
+        } else {
+          this.selectedLineup = null; //該当がなければnull
         }
+        this.filterAttachments();
+      });
+
+      // --- selectedLineup の変更を監視してアタッチメントを更新 ---
+      this.$watch("selectedLineup", () => {
+        this.filterAttachments();
       });
     },
+    // --- フィルタリング関数 ---
+    filterLineup() {
+      this.displayedLineup = this.allLineup.filter(
+        (item) => item.type === this.selectedType,
+      );
+    },
+    filterAttachments() {
+      if (!this.selectedLineup) {
+        this.displayedAttachments = [];
+        return;
+      }
+      this.displayedAttachments = this.allAttachments.filter((attachment) =>
+        attachment.compatibleLineup.includes(this.selectedLineup),
+      );
+    },
 
+    // --- 選択関数 ---
+    selectType(typeId) {
+      this.selectedType = typeId;
+    },
+    selectLineup(lineupId) {
+      this.selectedLineup = lineupId;
+    },
+
+    // --- モーダル関連関数 ---
     openModal(sectionType, itemId) {
       if (sectionType === "option") {
-        // option の場合 (Swiper)
-        const [productId, optionId] = itemId.split("-");
-        const product = this.products.find((p) => p.id === productId);
-        if (!product) {
-          console.error("Product not found:", productId);
+        // --- Option Modal (Swiper) ---
+        const currentOptionIndex = this.displayedAttachments.findIndex(
+          (a) => a.id === itemId,
+        );
+        if (currentOptionIndex === -1) {
+          console.warn(
+            "Selected attachment not found in displayed list:",
+            itemId,
+          );
           return;
         }
-        this.currentOptions = product.options; // JSONから読み込んだ options を使う
-        const currentOptionIndex = this.currentOptions.findIndex(
-          (o) =>
-            `<span class="math-inline">\{product\.id\}\-</span>{o.id}` ===
-            itemId,
-        ); // ここを修正: option.id ではなく itemId で比較
 
-        this.currentModalContent = { section: "option" };
+        this.currentModalContent = { section: "option" }; // option用と識別
         this.modalOpen = true;
 
         this.$nextTick(() => {
@@ -83,24 +133,26 @@ export default function modalComponent() {
             if (!this.swiper) {
               this.swiper = new Swiper(this.$refs.swiperContainer, {
                 direction: "horizontal",
-                loop: false,
+                loop: false, // ループしない
                 navigation: {
                   nextEl: ".swiper-button-next",
                   prevEl: ".swiper-button-prev",
                 },
+                initialSlide: currentOptionIndex, // ★ 初期スライドを指定
+                observer: true, // DOM変更を監視
+                observeParents: true, // 親要素の変更を監視
               });
+            } else {
+              // スライド内容を更新してインデックスを再設定
+              this.swiper.update();
+              this.swiper.slideTo(currentOptionIndex, 0, false);
             }
-            this.swiper.update(); // スライド内容が更新されたことを Swiper に伝える
-            this.swiper.slideTo(currentOptionIndex, 0, false);
-
-            const modalOverlay = document.querySelector(`.modal-overlay`);
-            if (modalOverlay) {
-              modalOverlay.focus();
-            }
+            const modalOverlay = document.querySelector(".modal-overlay");
+            if (modalOverlay) modalOverlay.focus();
           });
         });
       } else {
-        // feature, spec の場合
+        // --- Feature/Spec Modal ---
         let item;
         if (sectionType === "feature") {
           item = this.features.find((i) => i.id === itemId);
@@ -108,9 +160,7 @@ export default function modalComponent() {
           item = this.specs.find((i) => i.id === itemId);
         }
         if (!item) {
-          console.warn(
-            `Item not found: <span class="math-inline">\{sectionType\}\-</span>{itemId}`,
-          );
+          console.warn(`Item not found: ${sectionType}-${itemId}`);
           return;
         }
         this.setCurrentModalContent(
@@ -118,19 +168,20 @@ export default function modalComponent() {
           itemId,
           item.name,
           item.content,
-        ); // content を渡す
+        );
         this.modalOpen = true;
+        this.$nextTick(() => {
+          const modalOverlay = document.querySelector(".modal-overlay");
+          if (modalOverlay) modalOverlay.focus();
+        });
       }
     },
 
     closeModal() {
       this.modalOpen = false;
-      this.currentModalContent = null;
-      this.currentOptions = [];
-      if (this.swiper) {
-        this.swiper.destroy();
-        this.swiper = null;
-      }
+      // currentModalContent は残しても良いかもしれない (Swiper以外)
+      // this.currentModalContent = null;
+      // this.currentOptions = []; // displayedAttachments を使うので不要
     },
 
     gotoModal(sectionType, itemId) {
