@@ -13,6 +13,7 @@
     "autoprefixer": "^10.4.20",
     "css-declaration-sorter": "^7.2.0",
     "js-beautify": "^1.15.4",
+    "modern-normalize": "^3.0.1",
     "postcss": "^8.5.3",
     "postcss-normalize-charset": "^7.0.0",
     "postcss-sort-media-queries": "^5.2.0",
