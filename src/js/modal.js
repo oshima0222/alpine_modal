@@ -4,78 +4,34 @@ import Swiper from "swiper";
 export default function modalComponent() {
   return {
     modalOpen: false,
-    currentModalContent: null, // feature, spec 用
+    currentModalContent: null, // feature, spec, option 共通
     currentOptions: [], // option 用 (Swiper)
     swiper: null, // Swiper インスタンス
     scrollPosition: 0,
 
-    features: [
-      { id: "feature1", name: "特徴1", description: "特徴1の詳細説明..." },
-      { id: "feature2", name: "特徴2", description: "特徴2の詳細説明..." },
-      { id: "feature3", name: "特徴3", description: "特徴3の詳細説明..." },
-      { id: "feature4", name: "特徴4", description: "特徴4の詳細説明..." },
-    ],
-    specs: [
-      { id: "spec1", name: "仕様1", description: "仕様1の詳細説明..." },
-      { id: "spec2", name: "仕様2", description: "仕様2の詳細説明..." },
-    ],
-    products: [
-      {
-        id: "productA",
-        name: "製品A",
-        options: [
-          {
-            id: "option1",
-            name: "オプション1",
-            description: "製品A オプション1の詳細説明...",
-          },
-          {
-            id: "option2",
-            name: "オプション2",
-            description: "製品A オプション2の詳細説明...",
-          },
-          {
-            id: "option3",
-            name: "オプション3",
-            description: "製品A オプション3の詳細説明...",
-          },
-          {
-            id: "option4",
-            name: "オプション4",
-            description: "製品A オプション4の詳細説明...",
-          },
-        ],
-      },
-      {
-        id: "productB",
-        name: "製品B",
-        options: [
-          {
-            id: "option1",
-            name: "オプション1",
-            description: "製品B オプション1の詳細説明...",
-          },
-          {
-            id: "option2",
-            name: "オプション2",
-            description: "製品B オプション2の詳細説明...",
-          },
-        ],
-      },
-      {
-        id: "productC",
-        name: "製品C",
-        options: [
-          {
-            id: "option1",
-            name: "オプション1",
-            description: "製品C オプション1の詳細説明...",
-          },
-        ],
-      },
-    ],
+    features: [], // 初期値は空。init() で JSON から読み込む
+    specs: [], // 初期値は空。init() で JSON から読み込む
+    products: [], // 初期値を空にする
 
-    init() {
+    async init() {
+      // async キーワードを追加
+      try {
+        // Promise.all で JSON ファイルを並行して読み込む
+        const [featuresRes, specsRes, productsRes] = await Promise.all([
+          fetch("/data/features.json"),
+          fetch("/data/specs.json"),
+          fetch("/data/products.json"), // products.json の読み込みを追加
+        ]);
+        if (!featuresRes.ok || !specsRes.ok || !productsRes.ok) {
+          throw new Error("Failed to fetch data");
+        }
+        this.features = await featuresRes.json();
+        this.specs = await specsRes.json();
+        this.products = await productsRes.json(); // 読み込んだデータを格納
+      } catch (error) {
+        console.error("Error loading modal data:", error);
+      }
+
       this.$watch("modalOpen", (value) => {
         if (value) {
           this.scrollPosition =
@@ -92,22 +48,79 @@ export default function modalComponent() {
           }
         }
       });
-    },
 
-    openModal(section, itemId) {
-      this.modalOpen = true;
-      if (section === "option") {
-        this.initOptionModal(itemId);
-      } else {
-        // feature, spec
-        this.setFeatureSpecModalContent(section, itemId);
-      }
-      this.$nextTick(() => {
-        const modalOverlay = document.querySelector(`.modal-overlay`);
-        if (modalOverlay) {
-          modalOverlay.focus();
+      // currentOptions の監視 (変更なし)
+      this.$watch("currentOptions", () => {
+        if (this.swiper) {
+          this.$nextTick(() => {
+            this.swiper.update();
+          });
         }
       });
+    },
+
+    openModal(sectionType, itemId) {
+      if (sectionType === "option") {
+        // option の場合 (Swiper)
+        const [productId, optionId] = itemId.split("-");
+        const product = this.products.find((p) => p.id === productId);
+        if (!product) {
+          console.error("Product not found:", productId);
+          return;
+        }
+        this.currentOptions = product.options; // JSONから読み込んだ options を使う
+        const currentOptionIndex = this.currentOptions.findIndex(
+          (o) =>
+            `<span class="math-inline">\{product\.id\}\-</span>{o.id}` ===
+            itemId,
+        ); // ここを修正: option.id ではなく itemId で比較
+
+        this.currentModalContent = { section: "option" };
+        this.modalOpen = true;
+
+        this.$nextTick(() => {
+          requestAnimationFrame(() => {
+            if (!this.swiper) {
+              this.swiper = new Swiper(this.$refs.swiperContainer, {
+                direction: "horizontal",
+                loop: false,
+                navigation: {
+                  nextEl: ".swiper-button-next",
+                  prevEl: ".swiper-button-prev",
+                },
+              });
+            }
+            this.swiper.update(); // スライド内容が更新されたことを Swiper に伝える
+            this.swiper.slideTo(currentOptionIndex, 0, false);
+
+            const modalOverlay = document.querySelector(`.modal-overlay`);
+            if (modalOverlay) {
+              modalOverlay.focus();
+            }
+          });
+        });
+      } else {
+        // feature, spec の場合
+        let item;
+        if (sectionType === "feature") {
+          item = this.features.find((i) => i.id === itemId);
+        } else if (sectionType === "spec") {
+          item = this.specs.find((i) => i.id === itemId);
+        }
+        if (!item) {
+          console.warn(
+            `Item not found: <span class="math-inline">\{sectionType\}\-</span>{itemId}`,
+          );
+          return;
+        }
+        this.setCurrentModalContent(
+          sectionType,
+          itemId,
+          item.name,
+          item.content,
+        ); // content を渡す
+        this.modalOpen = true;
+      }
     },
 
     closeModal() {
@@ -120,78 +133,52 @@ export default function modalComponent() {
       }
     },
 
-    gotoModal(section, itemId) {
-      if (!itemId || section === "option") return; // optionの場合は処理しない
-      this.setFeatureSpecModalContent(section, itemId);
-    },
+    gotoModal(sectionType, itemId) {
+      if (!itemId || sectionType === "option") return;
 
-    // Feature/Spec モーダル用のコンテンツ設定
-    setFeatureSpecModalContent(section, itemId) {
       let item;
-      if (section === "feature") {
+      if (sectionType === "feature") {
         item = this.features.find((i) => i.id === itemId);
-      } else if (section === "spec") {
+      } else if (sectionType === "spec") {
         item = this.specs.find((i) => i.id === itemId);
       }
 
       if (!item) {
-        console.warn(`Item not found: ${section}-${itemId}`);
+        console.warn(
+          `Item not found: <span class="math-inline">\{sectionType\}\-</span>{itemId}`,
+        );
         return;
       }
-      const title = item.name;
-      const description = item.description;
+      this.setCurrentModalContent(sectionType, itemId, item.name, item.content); // content を渡す
+    },
 
+    setCurrentModalContent(sectionType, itemId, title, content) {
+      // description を content に変更
+      // feature, spec 用のデータ設定
       const { next, prev, hasNext, hasPrev } = this.getNextPrev(
-        section,
+        sectionType,
         itemId,
       );
       this.currentModalContent = {
-        section: section,
+        section: sectionType,
         title: title,
-        description: description,
+        content: content, // description を content に変更
         nextId: next,
         prevId: prev,
         hasNext: hasNext,
         hasPrev: hasPrev,
       };
     },
-    //オプションモーダル用初期設定
-    initOptionModal(itemId) {
-      const [productId, optionId] = itemId.split("-");
-      const product = this.products.find((p) => p.id === productId);
-      if (!product) {
-        console.error("Product not found:", productId);
-        return;
-      }
-      this.currentOptions = product.options;
-      const currentOptionIndex = this.currentOptions.findIndex(
-        (o) => `${product.id}-${o.id}` === itemId,
-      );
-      this.currentModalContent = { section: "option" };
-      this.$nextTick(() => {
-        if (!this.swiper) {
-          this.swiper = new Swiper(this.$refs.swiperContainer, {
-            direction: "horizontal",
-            loop: false,
-            navigation: {
-              nextEl: ".swiper-button-next",
-              prevEl: ".swiper-button-prev",
-            },
-          });
-        }
-        this.swiper.update();
-        this.swiper.slideTo(currentOptionIndex, 0, false);
-      });
-    },
-    getNextPrev(section, itemId) {
-      // feature, spec 用のロジック
+
+    getNextPrev(sectionType, itemId) {
+      // feature, spec 用
       let items = [];
-      if (section === "feature") {
+      if (sectionType === "feature") {
         items = this.features;
-      } else if (section === "spec") {
+      } else if (sectionType === "spec") {
         items = this.specs;
       } else {
-        return { next: null, prev: null, hasNext: false, hasPrev: false }; // optionの場合は呼ばれない
+        return { next: null, prev: null, hasNext: false, hasPrev: false };
       }
 
       const currentIndex = items.findIndex((item) => item.id === itemId);

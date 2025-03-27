@@ -13,22 +13,34 @@
     <div x-data="modalComponent">
       <section class="feature">
         <h2>特徴</h2>
-        <template x-for="feature in features" :key="feature.id">
-          <div>
-            <h4><span x-text="feature.name"></span></h4>
-            <button @click="openModal('feature', feature.id)">詳細</button>
-          </div>
-        </template>
+        <div>
+          <h4>特徴1</h4>
+          <button @click="openModal('feature', 'feature1')">詳細</button>
+        </div>
+        <div>
+          <h4>特徴2</h4>
+          <button @click="openModal('feature', 'feature2')">詳細</button>
+        </div>
+        <div>
+          <h4>特徴3</h4>
+          <button @click="openModal('feature', 'feature3')">詳細</button>
+        </div>
+        <div>
+          <h4>特徴4</h4>
+          <button @click="openModal('feature', 'feature4')">詳細</button>
+        </div>
       </section>
 
       <section class="spec">
         <h2>仕様</h2>
-        <template x-for="spec in specs" :key="spec.id">
-          <div>
-            <h4><span x-text="spec.name"></span></h4>
-            <button @click="openModal('spec', spec.id)">詳細</button>
-          </div>
-        </template>
+        <div>
+          <h4>仕様1</h4>
+          <button @click="openModal('spec', 'spec1')">詳細</button>
+        </div>
+        <div>
+          <h4>仕様2</h4>
+          <button @click="openModal('spec', 'spec2')">詳細</button>
+        </div>
       </section>
 
       <section class="options">
@@ -72,8 +84,8 @@
           >
             <button class="modal-close" @click="closeModal">&times;</button>
             <h4 x-text="currentModalContent?.title"></h4>
+            <div x-html="currentModalContent?.content"></div>
             <p x-text="currentModalContent?.description"></p>
-
             <div x-show="currentModalContent">
               <button
                 @click="gotoModal(currentModalContent.section, currentModalContent.prevId)"
@@ -119,7 +131,7 @@
                 <template x-for="option in currentOptions" :key="option.id">
                   <div class="swiper-slide">
                     <h4><span x-text="option.name"></span></h4>
-                    <p x-text="option.description"></p>
+                    <div x-html="option.content"></div>
                   </div>
                 </template>
               </div>
