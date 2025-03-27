@@ -1,0 +1,12 @@
+// Font Families
+$font-family-base: 'Zen Kaku Gothic New','Noto Sans JP', sans-serif; // 基本フォント (日本語優先)
+$font-family-heading: 'Barlow Condensed', 'Noto Sans JP', sans-serif; // 見出し用フォント (英語優先)
+$font-family-japanese: 'Noto Sans JP', 'Zen Kaku Gothic New', sans-serif;
+$font-family-english: 'Barlow Condensed', sans-serif;
+
+$breakpoints: (
+  'sm': 640px,  // スマートフォン横向き程度
+  'md': 768px,  // タブレット縦向き程度
+  'lg': 1024px, // タブレット横向き・小さいデスクトップ
+  'xl': 1280px  // 一般的なデスクトップ
+);

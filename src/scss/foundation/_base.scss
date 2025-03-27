@@ -1,0 +1,7 @@
+
+@use '../configs' as *;
+@import 'modern-normalize/modern-normalize.css';
+
+body {
+  font-family: $font-family-base; // 例: 基本フォント設定
+}
