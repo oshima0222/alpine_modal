@@ -5,6 +5,7 @@ $font-family-japanese: 'Noto Sans JP', 'Zen Kaku Gothic New', sans-serif;
 $font-family-english: 'Barlow Condensed', sans-serif;
 
 $breakpoints: (
+  'xs': 375px,  // スマートフォンの基準サイズ
   'sm': 640px,  // スマートフォン横向き程度
   'md': 768px,  // タブレット縦向き程度
   'lg': 1024px, // タブレット横向き・小さいデスクトップ
