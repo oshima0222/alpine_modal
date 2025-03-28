@@ -1,0 +1,37 @@
+@use "variables" as *;
+@use "sass:map";
+@use "sass:math";
+@use "sass:meta";
+
+//単位を除く関数 ($number)に単位を除外したい数値を入れる
+@function strip-unit($number) {
+  @if meta.type-of($number) == "number" and not math.is-unitless($number) {
+    //条件分岐。もし$numberが数値型変数で、単位がある数字ならば
+    @return math.div($number, ($number * 0 + 1));
+    //例えば $numberが16pxなら、「16px ÷ (16px * 0 + 1) = 16px ÷ 1px」 になる
+  }
+  @return $number;
+  //条件に当てはまらなければ、そのまま$numberを返す
+}
+
+@function vw($breakpoint-key, $size) {
+  @if map.has-key($breakpoints, $breakpoint-key) {
+    $vw: calc(
+        strip-unit($size) /
+          strip-unit(map.get($breakpoints, $breakpoint-key)) *
+          100
+      ) +
+      vw;
+    @return $vw;
+  } @else {
+    @warn "Breakpoint key '#{$breakpoint-key}' not found in $breakpoints map for mq-down. Check _variables.scss";
+  }
+}
+
+@function varget($breakpoint-key, $var) {
+  @if map.has-key($var, $breakpoint-key) {
+    @return map.get($var, $breakpoint-key);
+  } @else {
+    @warn "Breakpoint key '#{$breakpoint-key}' not found in $breakpoints map for mq-down. Check _variables.scss";
+  }
+}

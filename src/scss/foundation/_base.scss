@@ -1,16 +1,22 @@
-
-@use '../configs' as *;
-@import 'modern-normalize/modern-normalize.css';
+@use "../configs" as *;
+@import "modern-normalize/modern-normalize.css";
 
 html {
+  line-height: 1.5;
   // モバイル基準 (xs)
-  @include fluid-font-size(12, 'xs');
+  font-size: vw("xs", 12);
   // タブレット (md)
-  @include mq('md') {
-    @include fluid-font-size(14, 'md');
+  @include mq("md") {
+    font-size: vw("md", 14);
   }
   // デスクトップ (lg) - 最大値を設定
-  @include mq('lg') {
-    @include fluid-font-size(18, 'lg', $max-font-size: 18);
+  @include mq("lg") {
+    font-size: min(vw("lg", 18), 18px);
   }
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
 }

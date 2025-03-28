@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Alpine.js Modals</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Noto+Sans+JP:wght@100..900&family=Zen+Kaku+Gothic+New:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* ... (スタイル、必要に応じて Swiper のスタイルも) ... */
+    </style>
+    <script type="module" crossorigin src="./assets/js/index.js?2082"></script>
+    <link rel="stylesheet" crossorigin href="./assets/css/style.css?2082">
+</head>
+
+<body>
+    <div x-data="modalComponent">
+        <section class="feature">
+            <h2>特徴</h2>
+            <div>
+                <h4>特徴1</h4>
+                <button @click="openModal('feature', 'feature1')">詳細</button>
+            </div>
+            <div>
+                <h4>特徴2</h4>
+                <button @click="openModal('feature', 'feature2')">詳細</button>
+            </div>
+            <div>
+                <h4>特徴3</h4>
+                <button @click="openModal('feature', 'feature3')">詳細</button>
+            </div>
+            <div>
+                <h4>特徴4</h4>
+                <button @click="openModal('feature', 'feature4')">詳細</button>
+            </div>
+        </section>
+
+        <section class="spec">
+            <h2>仕様</h2>
+            <div>
+                <h4>仕様1</h4>
+                <button @click="openModal('spec', 'spec1')">詳細</button>
+            </div>
+            <div>
+                <h4>仕様2</h4>
+                <button @click="openModal('spec', 'spec2')">詳細</button>
+            </div>
+        </section>
+
+        <section class="bl_attachment">
+            <nav class="bl_attachmentTypes">
+                <ul>
+                    <template x-for="type in allTypes" :key="type.id">
+                        <li @click="selectType(type.id)" :class="{ 'is_active': selectedType === type.id }">
+                            <span x-text="type.name"></span>
+                        </li>
+                    </template>
+                </ul>
+            </nav>
+            <div class="bl_attachmentLineup">
+                <ul>
+                    <template x-for="lineup in displayedLineup" :key="lineup.id">
+                        <li @click="selectLineup(lineup.id)" :class="{ 'is_active': selectedLineup === lineup.id }">
+                            <img :src="'/assets/images/attachment/' + lineup.image" :alt="lineup.name" />
+                            <span x-text="lineup.class"></span>
+                        </li>
+                    </template>
+                </ul>
+            </div>
+            <div class="bl_attachmentList">
+                <ul>
+                    <template x-for="attachment in displayedAttachments" :key="attachment.id">
+                        <li @click="openModal('option', attachment.id)">
+                            <img :src="'/assets/images/attachment/' + attachment.image" :alt="attachment.name_ja" />
+                            <span x-text="attachment.name_ja"></span><span x-text="attachment.code"></span>
+                        </li>
+                    </template>
+                </ul>
+            </div>
+        </section>
+
+        <template x-if="modalOpen && currentModalContent && currentModalContent.section !== 'option'">
+            <div class="modal-overlay fade" @click.self="closeModal" @keydown.escape="closeModal" x-transition:enter="fade-enter-active" x-transition:enter-start="fade-enter-from" x-transition:leave="fade-leave-active" x-transition:leave-end="fade-leave-to" tabindex="-1">
+                <div class="modal-content slide" @click.stop x-transition:enter="slide-enter-active" x-transition:enter-start="slide-enter-from" x-transition:leave="slide-leave-active" x-transition:leave-end="slide-leave-to">
+                    <button class="modal-close" @click="closeModal">&times;</button>
+                    <h4 x-text="currentModalContent?.title"></h4>
+                    <div x-html="currentModalContent?.content"></div>
+                    <div x-show="currentModalContent">
+                        <button @click="gotoModal(currentModalContent.section, currentModalContent.prevId)" x-show="currentModalContent.hasPrev">
+                            前へ
+                        </button>
+                        <button @click="gotoModal(currentModalContent.section, currentModalContent.nextId)" x-show="currentModalContent.hasNext">
+                            次へ
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </template>
+
+        <template x-if="modalOpen && currentModalContent && currentModalContent.section === 'option'">
+            <div class="modal-overlay fade" @click.self="closeModal" @keydown.escape="closeModal" x-transition:enter="fade-enter-active" x-transition:enter-start="fade-enter-from" x-transition:leave="fade-leave-active" x-transition:leave-end="fade-leave-to" tabindex="-1">
+                <div class="modal-content slide" @click.stop x-transition:enter="slide-enter-active" x-transition:enter-start="slide-enter-from" x-transition:leave="slide-leave-active" x-transition:leave-end="slide-leave-to">
+                    <button class="modal-close" @click="closeModal">&times;</button>
+                    <div class="swiper" x-ref="swiperContainer">
+                        <div class="swiper-wrapper">
+                            <template x-for="attachment in displayedAttachments" :key="attachment.id">
+                                <div class="swiper-slide">
+                                    <div class="bl_attachmentItem">
+                                        <div class="bl_attachmentItem_content">
+                                            <h3 class="bl_attachmentItem_name">
+                                                <span x-text="attachment.name_ja"></span>
+                                                <span x-text="'(' + attachment.name_en + ')'"></span>
+                                            </h3>
+                                            <p class="bl_attachmentItem_code" x-text="attachment.code"></p>
+                                            <dl class="bl_attachmentItem_spec">
+                                                <template x-for="(spec, index) in attachment.specs" :key="index">
+                                                    <div>
+                                                        <dt x-text="spec.term"></dt>
+                                                        <dd x-text="spec.description"></dd>
+                                                    </div>
+                                                </template>
+                                            </dl>
+                                        </div>
+                                        <div class="bl_attachmentItem_image">
+                                            <img :src="'/assets/images/attachment/' + attachment.image" :alt="attachment.name_ja" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </template>
+                        </div>
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div>
+                    </div>
+                </div>
+            </div>
+        </template>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,84 @@
+@use "../configs" as *;
+
+body.is_modalOpen {
+  height: 100dvh;
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+}
+
+.bl_modal_overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* 他の要素より前面に */
+}
+
+.bl_modal_content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  width: min(80%, 1000px);
+  max-height: 80dvh;
+  overflow-y: auto;
+  position: relative; /* close button positioning */
+}
+
+.bl_modal_close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  font-size: 1.2em; /* Slightly larger */
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+/* Transition Styles (Optional, for animation) */
+.bl_modal_overlay.fade-enter-active,
+.bl_modal_overlay.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+.bl_modal_overlay.fade-enter-from,
+.bl_modal_overlay.fade-leave-to {
+  opacity: 0;
+}
+
+.bl_modal_content.slide-enter-active,
+.bl_modal_content.slide-leave-active {
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+}
+
+.bl_modal_content.slide-enter-from,
+.bl_modal_content.slide-leave-to {
+  transform: translateY(-20px); /* Start slightly above */
+  opacity: 0;
+}
+
+.swiper-container {
+  width: 100%;
+  height: 100%;
+}
+.swiper-wrapper {
+  height: calc(100% - 52px);
+}
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  /* Center slide text vertically */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

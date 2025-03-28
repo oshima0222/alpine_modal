@@ -1,0 +1,6 @@
+[
+  { "id": "feature1", "name": "特徴1", "content": "<p>特徴1の<strong>詳細</strong>説明です。HTMLタグも使えます。</p>" },
+  { "id": "feature2", "name": "特徴2", "content": "<ul><li>特徴2のリスト1</li><li>特徴2のリスト2</li></ul>" },
+  { "id": "feature3", "name": "特徴3", "content": "<p>特徴3の説明。</p>" },
+  { "id": "feature4", "name": "特徴4", "content": "<p>特徴4の説明。</p>" }
+]

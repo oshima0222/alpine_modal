@@ -5,17 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Alpine.js Modals</title>
     <link rel="stylesheet" href="./scss/style.scss" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Noto+Sans+JP:wght@100..900&family=Zen+Kaku+Gothic+New:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-    <style>
-      /* ... (スタイル、必要に応じて Swiper のスタイルも) ... */
-    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Klee+One&family=Noto+Sans+JP:wght@100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Zen+Kaku+Gothic+New:wght@300;400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <div x-data="modalComponent">
       <section class="feature">
-        <h2>特徴</h2>
         <div>
           <h4>特徴1</h4>
           <button @click="openModal('feature', 'feature1')">詳細</button>
@@ -34,8 +33,11 @@
         </div>
       </section>
 
-      <section class="spec">
-        <h2>仕様</h2>
+      <section class="ly_spec">
+        <div class="bl_sectionHeader">
+          <h2 class="bl_sectionHeader_heading">よくあるご質問</h2>
+          <p class="bl_sectionHeader_headingEn">FAQ</p>
+        </div>
         <div>
           <h4>仕様1</h4>
           <button @click="openModal('spec', 'spec1')">詳細</button>
@@ -46,48 +48,88 @@
         </div>
       </section>
 
-      <section class="bl_attachment">
-        <nav class="bl_attachmentTypes">
-          <ul>
+      <section class="ly_attachment">
+        <div class="bl_sectionHeader">
+          <h2 class="bl_sectionHeader_heading">対応アタッチメント</h2>
+          <p class="bl_sectionHeader_headingEn">Attachments</p>
+        </div>
+        <nav class="ly_attachmentType">
+          <ul class="un_attachmentType_select">
             <template x-for="type in allTypes" :key="type.id">
               <li
                 @click="selectType(type.id)"
                 :class="{ 'is_active': selectedType === type.id }"
               >
-                <span x-text="type.name"></span>
+                <div class="un_attachmentType_itemCode">
+                  <strong x-text="type.code"></strong>Series
+                </div>
+                <div
+                  class="un_attachmentType_itemName"
+                  x-text="type.name"
+                ></div>
               </li>
             </template>
           </ul>
         </nav>
-        <div class="bl_attachmentLineup">
-          <ul>
+        <div class="ly_attachmentLineup">
+          <ul class="un_attachmentLineup_select">
             <template x-for="lineup in displayedLineup" :key="lineup.id">
               <li
                 @click="selectLineup(lineup.id)"
                 :class="{ 'is_active': selectedLineup === lineup.id }"
               >
-                <img
-                  :src="'/assets/images/attachment/' + lineup.image"
-                  :alt="lineup.name"
-                />
-                <span x-text="lineup.class"></span>
+                <div
+                  class="un_attachmentLineup_itemName"
+                  x-text="lineup.name"
+                ></div>
+                <div class="un_attachmentLineup_itemImg">
+                  <img
+                    :src="'/assets/images/attachment/' + lineup.image"
+                    :alt="lineup.name"
+                  />
+                </div>
+                <div class="un_attachmentLineup_class">
+                  <div class="un_attachmentLineup_className">
+                    <img
+                      src="/assets/images/attachment/icon_class.svg"
+                      alt=""
+                    />
+                    class
+                  </div>
+                  <div
+                    class="un_attachmentLineup_classVal"
+                    x-text="lineup.class"
+                  ></div>
+                </div>
               </li>
             </template>
           </ul>
         </div>
-        <div class="bl_attachmentList">
-          <ul>
+        <div class="ly_attachmentList">
+          <ul class="ly_attachmentList_select">
             <template
               x-for="attachment in displayedAttachments"
               :key="attachment.id"
             >
               <li @click="openModal('option', attachment.id)">
-                <img
-                  :src="'/assets/images/attachment/' + attachment.image"
-                  :alt="attachment.name_ja"
-                />
-                <span x-text="attachment.name_ja"></span
-                ><span x-text="attachment.code"></span>
+                <div
+                  class="un_attachmentList_itemPlumbing"
+                  x-text="attachment.plumbing"
+                ></div>
+                <div class="un_attachmentList_itemImg">
+                  <img
+                    :src="'/assets/images/attachment/' + attachment.image"
+                    :alt="attachment.name_ja"
+                  />
+                </div>
+                <div
+                  class="un_attachmentList_itemName"
+                  x-text="attachment.name_ja"
+                ></div>
+                <span
+                  class="un_attachmentList_itemCode"
+                  x-text="attachment.code"
+                ></span>
               </li>
             </template>
           </ul>
@@ -98,7 +140,7 @@
         x-if="modalOpen && currentModalContent && currentModalContent.section !== 'option'"
       >
         <div
-          class="modal-overlay fade"
+          class="bl_modal_overlay fade"
           @click.self="closeModal"
           @keydown.escape="closeModal"
           x-transition:enter="fade-enter-active"
@@ -108,14 +150,14 @@
           tabindex="-1"
         >
           <div
-            class="modal-content slide"
+            class="bl_modal_content slide"
             @click.stop
             x-transition:enter="slide-enter-active"
             x-transition:enter-start="slide-enter-from"
             x-transition:leave="slide-leave-active"
             x-transition:leave-end="slide-leave-to"
           >
-            <button class="modal-close" @click="closeModal">&times;</button>
+            <button class="bl_modal_close" @click="closeModal">&times;</button>
             <h4 x-text="currentModalContent?.title"></h4>
             <div x-html="currentModalContent?.content"></div>
             <div x-show="currentModalContent">
@@ -140,7 +182,7 @@
         x-if="modalOpen && currentModalContent && currentModalContent.section === 'option'"
       >
         <div
-          class="modal-overlay fade"
+          class="bl_modal_overlay fade"
           @click.self="closeModal"
           @keydown.escape="closeModal"
           x-transition:enter="fade-enter-active"
@@ -150,14 +192,14 @@
           tabindex="-1"
         >
           <div
-            class="modal-content slide"
+            class="bl_modal_content slide"
             @click.stop
             x-transition:enter="slide-enter-active"
             x-transition:enter-start="slide-enter-from"
             x-transition:leave="slide-leave-active"
             x-transition:leave-end="slide-leave-to"
           >
-            <button class="modal-close" @click="closeModal">&times;</button>
+            <button class="bl_modal_close" @click="closeModal">&times;</button>
             <div class="swiper" x-ref="swiperContainer">
               <div class="swiper-wrapper">
                 <template
@@ -203,8 +245,108 @@
           </div>
         </div>
       </template>
+      <section class="ly_faq">
+        <div class="bl_sectionHeader">
+          <h2 class="bl_sectionHeader_heading">よくあるご質問</h2>
+          <p class="bl_sectionHeader_headingEn">FAQ</p>
+        </div>
+        <div class="ly_inner">
+          <div class="ly_faq_content">
+            <h3 class="un_faq_contentTitle">
+              <img
+                src="/assets/images/faq_subtitle.svg"
+                alt="教えて！ワンキャッチ"
+              />
+            </h3>
+            <dl class="un_faq_list">
+              <div class="un_faq_item">
+                <dt>
+                  <i class="un_faq_icon un_faq_icon__q">Q</i>
+                  <p>
+                    持っているアタッチメントはワンキャッチ用に買い替えないといけないの？
+                  </p>
+                </dt>
+                <dd>
+                  <i class="un_faq_icon un_faq_icon__a"
+                    >A</i>
+                  <p>
+                    アダプタのアダプタを使えばタグチ製のアタッチメントを使用可能よ。<br />
+                    でもアタッチメント全体が長くなり不安定な点、重量が増える点には注意が必要ね。
+                  </p>
+                </dd>
+              </div>
+              <!-- .un_faq_item -->
+              <div class="un_faq_item">
+                <dt>
+                  <i class="un_faq_icon un_faq_icon__q">Q</i>
+                  <p>
+                    すごく質問が入った場合のサンプルです。文字サイズ、色、フォントの種類はこの様になっています。メロスは激怒した。必ず、かの邪智暴虐の王を除かなければならぬと決意した。メロスには政治がわからぬ。メロスは、村の牧人である。笛を吹き、羊と遊んで暮して来た。けれども邪悪に対しては、人一倍に敏感であった。きょう未明メロスは村を出発し、野を越え山越え、十里はなれた此のシラクスの市にやって来た。メロスには父も、母も無い。女房も無い。電話も無い。ガスも無い。バスは一日一度来る。
+                  </p>
+                </dt>
+                <dd>
+                  <i class="un_faq_icon un_faq_icon__a"
+                    >A</i>
+                  <p>「ではみなさんは、そういうふうに川だと云われたり、乳の流れたあとだと云われたりしていたこのぼんやりと白いものがほんとうは何かご承知ですか。」先生は、黒板に吊した大きな黒い星座の図の、上から下へ白くけぶった銀河帯のようなところを指さしながら、みんなに問といをかけました。<br>
+                    　カムパネルラが手をあげました。それから四五人手をあげました。ジョバンニも手をあげようとして、急いでそのままやめました。たしかにあれがみんな星だと、いつか雑誌で読んだのでしたが、このごろはジョバンニはまるで毎日教室でもねむく、本を読むひまも読む本もないので、なんだかどんなこともよくわからないという気持ちがするのでした。
+                  </p>
+                </dd>
+              </div>
+              <!-- .un_faq_item -->
+              <div class="un_faq_item">
+                <dt>
+                  <i class="un_faq_icon un_faq_icon__q">Q</i>
+                  <p>お姉さんはだれなの？</p>
+                </dt>
+                <dd>
+                  <i class="un_faq_icon un_faq_icon__a"
+                    >A</i>
+                  <p>詮索されるのはあまり好きじゃないの。でもワタシについて知りたいならここからどうぞ。
+                    <a href="#">ワンキャッチなワタシ</a>
+                  </p>
+                </dd>
+              </div>
+              <!-- .un_faq_item -->
+            </dl>
+          </div>
+        </div>
+      </section>
+      <section class="ly_series">
+        <div class="bl_sectionHeader">
+          <h2 class="bl_sectionHeader_heading">シリーズラインアップ</h2>
+          <p class="bl_sectionHeader_headingEn">OC Series</p>
+        </div>
+        <div class="un_series_lineup">
+          <div class="un_series_item">
+            <div class="un_series_itemSeries">
+              <strong>OC</strong> series
+            </div>
+            <div class="un_series_itemName">機械式ワンキャッチ</div>
+            <div class="un_series_itemImg"><img></div>
+            <div class="un_series_itemBtn"><a href="https://www.taguchi.co.jp/product/oc/" target="_blank">製品ページはこちら</a></div>
+          </div><!-- /.un_series_item-->
+          <div class="un_series_item">
+            <div class="un_series_itemSeries">
+              <strong>OC-H</strong> series
+            </div>
+            <div class="un_series_itemName">油圧式ワンキャッチ</div>
+            <div class="un_series_itemImg"><img></div>
+            <div class="un_series_itemBtn"><a href="https://www.taguchi.co.jp/product/oc-h/" target="_blank">製品ページはこちら</a></div>
+          </div><!-- /.un_series_item-->
+        </div><!-- /.un_series_lineup -->
+      </section>
     </div>
-
+    <footer class="ly_globalFooter">
+      <div class="ly_globalFooter_inner">
+        <div class="bl_gf_main">
+          <div class="bl_gf_prodlogo">完全油圧式ワンキャッチ</div>
+          <div class="bl_gf_contact"><a href="https://www.taguchi.co.jp/contact/" target="_blank"></a></div>
+        </div>
+        <div class="bl_gf_aside">
+          <div class="bl_gf_corplogo">re-create the world TAGUCHI</div>
+          <small class="ly_gf_copyright">&copy; TAGUCHI Industiral Co., Ltd.</small>
+        </div>
+      </div>
+    </footer>
     <script type="module" src="./js/main.js"></script>
   </body>
 </html>

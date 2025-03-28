@@ -1,0 +1,65 @@
+// _helper.scss
+@use "../configs" as *;
+
+.hp_none {
+  display: none !important;
+  &__xs {
+    @include mq-down("md") {
+      display: none !important;
+    }
+  }
+  &__md {
+    @include mq("md") {
+      @include mq-down("lg") {
+        display: none !important;
+      }
+    }
+  }
+  &__lg {
+    @include mq("lg") {
+      display: none !important;
+    }
+  }
+}
+
+.hp_inline {
+  display: inline !important;
+  &__xs {
+    @include mq-down("md") {
+      display: inline !important;
+    }
+  }
+  &__md {
+    @include mq("md") {
+      @include mq-down("lg") {
+        display: inline !important;
+      }
+    }
+  }
+  &__lg {
+    @include mq("lg") {
+      display: inline !important;
+    }
+  }
+}
+
+.hp_inline-block {
+  display: inline-block !important;
+  &__xs {
+    @include mq-down("md") {
+      display: inline-block !important;
+    }
+  }
+  &__md {
+    @include mq("md") {
+      @include mq-down("lg") {
+        display: inline-block !important;
+      }
+    }
+  }
+  &__lg {
+    @include mq("lg") {
+      display: inline-block !important;
+    }
+  }
+}

@@ -50,7 +50,7 @@
 		"name_ja": "標準バケット",
 		"name_en": "Standard Bucket",
 		"code": "BK-32-550-HP",
-		"image": "bk-32-550-hp.png",
+		"image": "BK-32-550-hp.png",
     "plumbing": "機械式",
 		"compatibleLineup": [
 			"OC-32HP",

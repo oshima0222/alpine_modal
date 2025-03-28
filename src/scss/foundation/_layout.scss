@@ -1,0 +1,6 @@
+// _layout.scss
+@use "../configs" as *;
+
+.ly_inner {
+  @include inner();
+}

@@ -4,69 +4,69 @@
 		"name": "OC-17HP",
 		"type": "ochp",
 		"class": "1.2 - 2.5ton",
-		"image": "oc-17hp.png"
+		"image": "oc-17hp.jpg"
 	},
 	{
 		"id": "OC-32HP",
 		"name": "OC-32HP",
 		"type": "ochp",
 		"class": "3 - 4ton",
-		"image": "oc-32hp.png"
+		"image": "oc-32hp.jpg"
 	},
 	{
 		"id": "OC-37HP",
 		"name": "OC-37HP",
 		"type": "ochp",
 		"class": "3 - 5.5ton",
-		"image": "oc-37hp.png"
+		"image": "oc-37hp.jpg"
 	},
 	{
 		"id": "OC-62HP",
 		"name": "OC-62HP",
 		"type": "ochp",
 		"class": "6 - 8ton",
-		"image": "oc-62hp.png"
+		"image": "oc-62hp.jpg"
 	},
 	{
 		"id": "OC-122HP",
 		"name": "OC-122HP",
 		"type": "ochp",
 		"class": "12 - 14ton",
-		"image": "oc-122hp.png"
+		"image": "oc-122hp.jpg"
 	},
 	{
 		"id": "OC-202HP",
 		"name": "OC-202HP",
 		"type": "ochp",
 		"class": "20 - 22ton",
-		"image": "oc-202hp.png"
+		"image": "oc-202hp.jpg"
 	},
 	{
 		"id": "OC-402HP",
 		"name": "OC-402HP",
 		"type": "ochp",
 		"class": "40 - 45ton",
-		"image": "oc-402hp.png"
+		"image": "oc-402hp.jpg"
 	},
 	{
 		"id": "OC-17EHP",
 		"name": "OC-17EHP",
 		"type": "ocehp",
 		"class": "1.2 - 2.5ton",
-		"image": "oc-17ehp.png"
+		"image": "oc-17ehp.jpg"
 	},
 	{
 		"id": "OC-32EHP",
 		"name": "OC-32EHP",
 		"type": "ocehp",
 		"class": "3 - 4ton",
-		"image": "oc-32ehp.png"
+		"image": "oc-32ehp.jpg"
 	},
 	{
 		"id": "OC-37EHP",
 		"name": "OC-37EHP",
 		"type": "ocehp",
 		"class": "3 - 5.5ton",
-		"image": "oc-37ehp.png"
+		"image": "oc-37ehp.jpg"
 	}
 ]

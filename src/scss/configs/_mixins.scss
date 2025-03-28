@@ -1,8 +1,7 @@
 // scss/_mixins.scss
-@use 'sass:map';
-@use 'sass:math';
-@use 'sass:meta';
-@use 'variables' as *; // _variables.scss を読み込む (ファイル名注意)
+@use "sass:map";
+@use "variables" as *;
+@use "functions" as *;
 
 // メディアクエリ Mixin (min-width)
 // 使用例: @include mq(md) { ... }
@@ -19,8 +18,7 @@
   }
 }
 
-// メディアクエリ Mixin (max-width)  ---
-// 指定したブレークポイントの幅未満に適用
+// メディアクエリ Mixin (max-width)
 // 例: @include mq-down(lg) { ... } -> @media (max-width: 1023px) { ... }
 @mixin mq-down($breakpoint-key) {
   @if map.has-key($breakpoints, $breakpoint-key) {
@@ -35,45 +33,11 @@
   }
 }
 
-
-//単位を除く関数 ($number)に単位を除外したい数値を入れる
-@function strip-unit($number){
-  @if meta.type-of($number) == 'number' and not math.is-unitless($number){
-  //条件分岐。もし$numberが数値型変数で、単位がある数字ならば
-    @return math.div($number, ($number * 0 + 1));
-    //例えば $numberが16pxなら、「16px ÷ (16px * 0 + 1) = 16px ÷ 1px」 になる
-  }
-  @return $number;
-  //条件に当てはまらなければ、そのまま$numberを返す
+@mixin inner() {
+  $max-padding: map.get($breakpoints, "lg") * 0.05;
+  width: min(100%, $inner-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: min(5%, $max-padding);
+  padding-right: min(5%, $max-padding);
 }
-
-// フルードフォントサイズ計算 Mixin
-// 引数:
-//   $target-font-size: 目標とするフォントサイズ (px 単位の数値)
-//   $breakpoint-key: 基準とするビューポート幅のブレークポイントキー ('sm', 'md', 'lg', 'xl')
-//                   または、モバイル基準の場合は null や 'base' など任意の文字列 (ブレークポイントマップにないキー)
-//   $base-viewport-width: モバイル基準のビューポート幅 (px 単位の数値, $breakpoint-key がマップにない場合に使用)
-//   $max-font-size: 最大フォントサイズ (px 単位の数値, 省略可能)
-@mixin fluid-font-size($target-font-size, $breakpoint-key, $base-viewport-width: 375, $max-font-size: null) {
-  $target-viewport-width: $base-viewport-width; // デフォルトはモバイル基準幅
-
-  // ブレークポイントマップにキーが存在すれば、その幅を使用
-  @if map.has-key($breakpoints, $breakpoint-key) {
-    $target-viewport-width: map.get($breakpoints, $breakpoint-key);
-  } @else if not map.has-key($breakpoints, $breakpoint-key) and $breakpoint-key != 'base' and $breakpoint-key != null {
-      // マップにないキーが指定された場合の警告 (base, null を除く)
-       @warn "Breakpoint key '#{$breakpoint-key}' not found for fluid-font-size. Using base viewport width (#{$base-viewport-width}px).";
-  }
-
-  // font-size の計算 (vw 単位)
-  // calc() 内での Sass 変数展開には #{...} を使用
-  $fluid-value: calc($target-font-size / strip-unit($target-viewport-width) * 100vw);
-
-  // 最大フォントサイズが指定されている場合は min() を使用
-  @if $max-font-size {
-    font-size: min($fluid-value, #{$max-font-size}px);
-  } @else {
-    font-size: $fluid-value;
-  }
-}
-

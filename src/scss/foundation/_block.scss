@@ -1,0 +1,31 @@
+// _block.scss
+@use "../configs" as *;
+
+.bl_sectionHeader {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  margin-bottom: 56px;
+  gap: 8px;
+}
+
+.bl_sectionHeader_heading {
+  margin: 0;
+  font-weight: 800;
+  @include mq("lg") {
+    font-size: min(vw("lg", 24), 24px);
+  }
+}
+
+.bl_sectionHeader_headingEn {
+  margin: 0;
+  color: $color-thema-yellow-100;
+  font-family: $font-family-barlow;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  line-height: 1;
+  @include mq("lg") {
+    font-size: min(vw("lg", 96), 96px);
+  }
+}

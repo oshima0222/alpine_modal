@@ -1,13 +1,47 @@
+// colors
+$color-thema-yellow-100: #ffe100;
+
+$color-white: #fff;
+
+$color-gray-50: oklch(0.985 0.002 247.839);
+$color-gray-100: oklch(0.967 0.003 264.542);
+$color-gray-200: oklch(0.928 0.006 264.531);
+$color-gray-300: oklch(0.872 0.01 258.338);
+$color-gray-400: oklch(0.707 0.022 261.325);
+$color-gray-500: oklch(0.551 0.027 264.364);
+$color-gray-600: oklch(0.446 0.03 256.802);
+$color-gray-700: oklch(0.373 0.034 259.733);
+$color-gray-800: oklch(0.278 0.033 256.848);
+$color-gray-900: oklch(0.21 0.034 264.665);
+$color-gray-950: oklch(0.13 0.028 261.692);
+
 // Font Families
-$font-family-base: 'Zen Kaku Gothic New','Noto Sans JP', sans-serif; // 基本フォント (日本語優先)
-$font-family-heading: 'Barlow Condensed', 'Noto Sans JP', sans-serif; // 見出し用フォント (英語優先)
-$font-family-japanese: 'Noto Sans JP', 'Zen Kaku Gothic New', sans-serif;
-$font-family-english: 'Barlow Condensed', sans-serif;
+$font-family-base: "Zen Kaku Gothic New", "Noto Sans JP", sans-serif;
+$font-family-barlow: "Barlow Condensed", sans-serif;
+$font-family-roboto: "Roboto Condensed", sans-serif;
 
 $breakpoints: (
-  'xs': 375px,  // スマートフォンの基準サイズ
-  'sm': 640px,  // スマートフォン横向き程度
-  'md': 768px,  // タブレット縦向き程度
-  'lg': 1024px, // タブレット横向き・小さいデスクトップ
-  'xl': 1280px  // 一般的なデスクトップ
+  "xs": 375px,
+  // スマートフォンの基準サイズ
+  // 'sm': 640px,  // スマートフォン横向き程度
+  "md": 768px,
+  // タブレット縦向き程度
+  "lg": 1024px,
+  // タブレット横向き・小さいデスクトップ
+   // 'xl': 1280px  // 一般的なデスクトップ
+);
+
+// design
+$inner-width: 1360px;
+
+$section-padding: (
+  "xs": 40px,
+  "md": 48px,
+  "lg": 60px,
+);
+
+$section-radius: (
+  "xs": 40px,
+  "md": 48px,
+  "lg": 60px,
 );

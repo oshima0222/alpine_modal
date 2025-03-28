@@ -1,0 +1,165 @@
+@use "../configs" as *;
+
+.ly_attachment {
+  background-color: $color-gray-100;
+  padding: varget("xs", $section-padding) 0;
+  border-radius: varget("xs", $section-radius);
+  @include mq("md") {
+    padding: varget("md", $section-padding) 0;
+    border-radius: varget("md", $section-radius);
+  }
+  @include mq("lg") {
+    padding: varget("lg", $section-padding) 0;
+    border-radius: min(
+      vw("lg", varget("lg", $section-radius)),
+      varget("lg", $section-radius)
+    );
+  }
+}
+
+.ly_attachmentType {
+  @include inner();
+}
+
+.un_attachmentType_select {
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 16px;
+  display: flex;
+  list-style: none;
+  gap: 24px;
+  border-radius: 32px;
+  background-color: $color-gray-200;
+  li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 24px;
+    background-color: $color-white;
+    border-radius: 24px;
+    cursor: pointer;
+    &.is_active {
+      background: $color-thema-yellow-100;
+      pointer-events: none;
+    }
+  }
+}
+
+.un_attachmentType_itemCode {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: $font-family-roboto;
+  font-weight: 500;
+  strong {
+    font-size: 1.3333333333333333em;
+    font-weight: 800;
+  }
+}
+
+.un_attachmentType_itemName {
+  font-weight: 900;
+}
+
+.ly_attachmentLineup {
+  @include inner();
+  border-top: solid 1px $color-gray-300;
+  border-bottom: solid 1px $color-gray-300;
+}
+
+.un_attachmentLineup_select {
+  display: flex;
+  overflow-x: scroll;
+  list-style: none;
+  gap: 32px;
+  li {
+    flex: 0 0 180px;
+    padding: 24px;
+    width: 180px;
+    background-color: $color-white;
+    border-radius: 16px;
+    display: inline-block;
+    text-align: center;
+    font-family: $font-family-roboto;
+    font-weight: 600;
+    &.is_active {
+      background: $color-thema-yellow-100;
+      pointer-events: none;
+    }
+  }
+}
+
+.un_attachmentLineup_itemName {
+  font-size: 16px;
+}
+
+.un_attachmentLineup_itemImg {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.un_attachmentLineup_className {
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 16px;
+  color: $color-gray-600;
+  > img {
+    width: 24px;
+  }
+}
+
+.un_attachmentLineup_classVal {
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.ly_attachmentList {
+}
+
+.ly_attachmentList_select {
+  @include inner();
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  gap: 32px;
+  justify-content: flex-start;
+  > li {
+    position: relative;
+    flex: 0 0 calc((100% - 32px * 4) / 5);
+  }
+}
+
+.un_attachmentList_itemPlumbing {
+  position: absolute;
+  top: 0em;
+  left: 0em;
+  padding: 0.25em 0.5em;
+  font-size: 14px;
+  font-weight: 700;
+  color: $color-white;
+  background-color: $color-gray-500;
+}
+
+.un_attachmentList_itemImg {
+  margin-bottom: 8px;
+  padding: 24px;
+  border-radius: 16px;
+  background-color: $color-white;
+}
+
+.un_attachmentList_itemName {
+  font-size: 16px;
+  font-weight: 900;
+}
+
+.un_attachmentList_itemCode {
+  font-size: 14px;
+  font-weight: 500;
+  font-family: $font-family-roboto;
+}
