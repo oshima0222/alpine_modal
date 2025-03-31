@@ -1,8 +1,68 @@
 @use "../configs" as *;
 
 .ly_globalFooter {
+  padding-left: 5vw;
+  padding-right: 5vw;
+}
+
+.ly_globalFooter_inner {
+  max-width: 1600px;
   background-color: $color-gray-100;
   border-radius: 80px 80px 0 0;
   padding-top: 80px;
   padding-bottom: 40px;
+  padding-left: 5vw;
+  padding-right: 5vw;
+}
+
+.bl_gf_main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 980px;
+  margin-left: auto;
+  margin-right: auto;
+  border-bottom: solid 1px $color-gray-300;
+}
+
+.bl_gf_contact {
+  a {
+    display: inline-flex;
+    width: fit-content;
+    align-items: center;
+    font-weight: 700;
+    text-decoration: none;
+    color: $color-gray-900;
+    background-color: $color-thema-yellow-100;
+    gap: 8px;
+    padding: 8px 8px 8px 24px;
+    border-radius: 100px;
+    &::after {
+      display: block;
+      content: "";
+      flex: 0 0 32px;
+      width: 32px;
+      height: 32px;
+      overflow: hidden;
+      border: solid 1px $color-gray-200;
+      border-radius: 50%;
+      background: $color-white url('/assets/images/icon_angle_right_gray900.svg') no-repeat center center;
+      background-size: 50% auto;
+    }
+  }
+}
+
+.bl_gf_aside {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 980px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.bl_gf_copyright {
+  font-family: $font-family-roboto;
+  font-weight: 300;
+  color: $color-gray-600;
 }

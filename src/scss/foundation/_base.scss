@@ -2,6 +2,8 @@
 @import "modern-normalize/modern-normalize.css";
 
 html {
+  color: $color-gray-900;
+  font-family: $font-family-base;
   line-height: 1.5;
   // モバイル基準 (xs)
   font-size: vw("xs", 12);

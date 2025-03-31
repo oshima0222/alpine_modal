@@ -1,0 +1,70 @@
+@use "../configs" as *;
+
+.un_lineup_list {
+  @include inner();
+  display: flex;
+  align-items: flex-start;
+  text-align: center;
+  justify-content: center;
+}
+
+.un_lineup_item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 32px;
+}
+
+.un_lineup_itemName {
+  margin-bottom: 8px;
+  font-size: 24px;
+  font-weight: 900;
+  &::after {
+    margin-top: 8px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    content: "";
+    width: 56px;
+    height: 1px;
+    background-color: $color-gray-500;
+    overflow: hidden;
+  }
+}
+
+.un_lineup_itemSeries {
+  margin-bottom: 8px;
+  font-family: $font-family-roboto;
+  font-weight: 500;
+  strong {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 1.3333333333333333em;
+    font-weight: 800;
+  }
+}
+
+.un_lineup_itemBtn {
+  a {
+    display: inline-flex;
+    width: fit-content;
+    align-items: center;
+    font-weight: 700;
+    text-decoration: none;
+    color: $color-thema-yellow-100;
+    background-color: $color-gray-950;
+    gap: 8px;
+    padding: 8px 8px 8px 24px;
+    border-radius: 100px;
+    &::after {
+      display: block;
+      content: "";
+      flex: 0 0 32px;
+      width: 32px;
+      height: 32px;
+      overflow: hidden;
+      border-radius: 50%;
+      background: $color-white;
+    }
+  }
+}
