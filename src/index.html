@@ -13,23 +13,218 @@
     />
   </head>
   <body>
+    <header class="ly_globalHeader">
+      <div class="ly_globalHeader_inner">
+        <h1>
+          <img src="/assets/images/logo_ochp.svg" width="150" height="46" />
+        </h1>
+        <button class="bl_navBtn">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </header>
     <div x-data="modalComponent">
-      <section class="feature">
-        <div>
-          <h4>特徴1</h4>
-          <button @click="openModal('feature', 'feature1')">詳細</button>
+      <section class="ly_hero" id="hero"></section>
+      <section class="ly_intro">
+        <div class="ly_intro_inner">
+          <h2 class="bl_intro_catch">
+            アタッチメントの交換を<br />
+            素早く、簡単、安全に
+          </h2>
+          <p class="bl_intro_lead">
+            作業に合わせて素早く交換！<br />
+            国産初の完全油圧式クイックヒッチが誕生。<br />
+            作業者1人でスピーディーなアタッチメントの交換作業が可能です。
+          </p>
         </div>
-        <div>
-          <h4>特徴2</h4>
-          <button @click="openModal('feature', 'feature2')">詳細</button>
+        <div class="bl_intro_movie">
+          <img src="/assets/images/intro_dummy.png" alt="" width="880" />
         </div>
-        <div>
-          <h4>特徴3</h4>
-          <button @click="openModal('feature', 'feature3')">詳細</button>
+      </section>
+      <section class="ly_feature">
+        <div class="un_feature_item un_feature_item__ochp">
+          <div class="un_feature_itemInner">
+            <div class="un_feature_product">
+              <div class="un_feature_productImg">
+                <img
+                  src="/assets/images/feat_model_ochp.png"
+                  alt=""
+                  width="600"
+                  height="600"
+                />
+              </div>
+              <div class="un_feature_productName">
+                <div class="inner">
+                  <img src="/assets/images/feat_ochp_name.svg" />
+                  <img src="/assets/images/feat_ochp_name.svg" />
+                  <img src="/assets/images/feat_ochp_name.svg" />
+                  <img src="/assets/images/feat_ochp_name.svg" />
+                </div>
+              </div>
+            </div>
+            <div class="un_feature_content">
+              <h3 class="un_feature_contentTitle">
+                完全油圧式ワンキャッチのここがスゴい！
+              </h3>
+              <div class="un_feature_contentList">
+                <div
+                  class="un_feature_card"
+                  @click="openModal('feature', 'feature1')"
+                >
+                  <div class="un_feature_cardHeader">
+                    <i
+                      ><img src="/assets/images/feat_icon_speedy.svg" alt=""
+                    /></i>
+                    <h3>国産初の完全油圧式でスピーディー着脱！</h3>
+                  </div>
+                  <div class="un_feature_cardImage">
+                    <img src="/assets/images/feat_card_speedy.png" alt="" />
+                  </div>
+                  <div class="un_feature_cardBody">
+                    <p>
+                      ワンキャッチなら、キャビン内からアタッチメントをスピーディーで簡単、安全に着脱可能です。
+                    </p>
+                    <div class="un_feature_cardBtn">
+                      <span>詳しく見る</span>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="un_feature_card"
+                  @click="openModal('feature', 'feature2')"
+                >
+                  <div class="un_feature_cardHeader">
+                    <i
+                      ><img src="/assets/images/feat_icon_shovel.svg" alt=""
+                    /></i>
+                    <h3>取り付け簡単！ショベル本体の改造も不要</h3>
+                  </div>
+                  <div class="un_feature_cardImage">
+                    <img src="/assets/images/feat_card_shovel.png" alt="" />
+                  </div>
+                  <div class="un_feature_cardBody">
+                    <p>
+                      追加配管など油圧ショベル本体の改造は一切不要。取り付け、配線作業も驚くほど簡単！
+                    </p>
+                    <div class="un_feature_cardBtn">
+                      <span>詳しく見る</span>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="un_feature_card"
+                  @click="openModal('feature', 'feature3')"
+                >
+                  <div class="un_feature_cardHeader">
+                    <i
+                      ><img src="/assets/images/feat_icon_coupler.svg" alt=""
+                    /></i>
+                    <h3>カップリングまでタグチ製</h3>
+                  </div>
+                  <div class="un_feature_cardImage">
+                    <img src="/assets/images/feat_card_coupler.png" alt="" />
+                  </div>
+                  <div class="un_feature_cardBody">
+                    <p>
+                      接続部の「カップリング」も含めてすべてオリジナル、タグチが設計・製造しています。
+                    </p>
+                    <div class="un_feature_cardBtn">
+                      <span>詳しく見る</span>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="un_feature_card"
+                  @click="openModal('feature', 'feature4')"
+                >
+                  <div class="un_feature_cardHeader">
+                    <i
+                      ><img src="/assets/images/feat_icon_safety.svg" alt=""
+                    /></i>
+                    <h3>安全対策は徹底されている！</h3>
+                  </div>
+                  <div class="un_feature_cardImage">
+                    <img src="/assets/images/feat_card_coupler.png" alt="" />
+                  </div>
+                  <div class="un_feature_cardBody">
+                    <p>
+                      角度センサーとJAXA共同開発メカニカルロック搭載。二重の安全装置で、アタッチメント落下を防止します。
+                    </p>
+                    <div class="un_feature_cardBtn">
+                      <span>詳しく見る</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="un_feature_card">特徴1-5</div>
+                <div class="un_feature_card">特徴1-6</div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div>
-          <h4>特徴4</h4>
-          <button @click="openModal('feature', 'feature4')">詳細</button>
+
+        <div class="un_feature_item un_feature_item__ocehp">
+          <div class="un_feature_itemInner">
+            <div class="un_feature_product">
+              <div class="un_feature_productImg">
+                <img
+                  src="/assets/images/feat_model_ocehp.png"
+                  alt=""
+                  width="600"
+                  height="600"
+                />
+              </div>
+              <div class="un_feature_productName">
+                <div class="inner">
+                  <img src="/assets/images/feat_ocehp_name.svg" />
+                  <img src="/assets/images/feat_ocehp_name.svg" />
+                  <img src="/assets/images/feat_ocehp_name.svg" />
+                  <img src="/assets/images/feat_ocehp_name.svg" />
+                </div>
+              </div>
+            </div>
+            <div class="un_feature_content">
+              <h3 class="un_feature_contentTitle">
+                完全油圧式ワンキャッチプラスのここがスゴい！
+              </h3>
+              <div class="un_feature_contentList">
+                <div class="un_feature_card">特徴2-1</div>
+                <div class="un_feature_card">特徴2-2</div>
+                <div class="un_feature_card">特徴2-3</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="un_feature_item un_feature_item__ocba">
+          <div class="un_feature_itemInner">
+            <div class="un_feature_product">
+              <div class="un_feature_productImg">
+                <img
+                  src="/assets/images/feat_model_ocba.png"
+                  alt=""
+                  width="600"
+                  height="600"
+                />
+              </div>
+              <div class="un_feature_productName">
+                <div class="inner">
+                  <img src="/assets/images/feat_ocba_name.svg" />
+                  <img src="/assets/images/feat_ocba_name.svg" />
+                  <img src="/assets/images/feat_ocba_name.svg" />
+                  <img src="/assets/images/feat_ocba_name.svg" />
+                </div>
+              </div>
+            </div>
+            <div class="un_feature_content">
+              <h3 class="un_feature_contentTitle">
+                アダプタのアダプタのここがスゴい！
+              </h3>
+              <div class="un_feature_contentList">
+                <div class="un_feature_card">特徴3-1</div>
+                <div class="un_feature_card">特徴3-2</div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -40,7 +235,7 @@
         </div>
         <div class="un_spec_list">
           <div class="un_spec_item">
-            <div class="un_spec_itemName">完全油圧式<br>ワンキャッチ</div>
+            <div class="un_spec_itemName">完全油圧式<br />ワンキャッチ</div>
             <div class="un_spec_itemSeries"><strong>OC-HP</strong> series</div>
             <div class="un_spec_itemImg">
               <img
@@ -56,11 +251,16 @@
               <li>旋回&開閉動作アタッチメントを使いたい</li>
             </ul>
             <div class="un_spec_itemBtn">
-              <button @click="openModal('spec', 'spec1')">仕様一覧を見る</button>
+              <button @click="openModal('spec', 'spec1')">
+                仕様一覧を見る
+              </button>
             </div>
-          </div><!-- /.un_spec_item -->
+          </div>
+          <!-- /.un_spec_item -->
           <div class="un_spec_item">
-            <div class="un_spec_itemName">完全油圧式<br>ワンキャッチプラス</div>
+            <div class="un_spec_itemName">
+              完全油圧式<br />ワンキャッチプラス
+            </div>
             <div class="un_spec_itemSeries"><strong>OC-EHP</strong> series</div>
             <div class="un_spec_itemImg">
               <img
@@ -73,14 +273,19 @@
             <ul class="un_spec_itemPoints">
               <li>1系統配管のショベルで使用可能</li>
               <li>追加配管などショベル側の改造不要</li>
-              <li>旋回＆開閉動作アタッチメントを使いたい（※電気配線により可能）</li>
+              <li>
+                旋回＆開閉動作アタッチメントを使いたい（※電気配線により可能）
+              </li>
             </ul>
             <div class="un_spec_itemBtn">
-              <button @click="openModal('spec', 'spec2')">仕様一覧を見る</button>
+              <button @click="openModal('spec', 'spec2')">
+                仕様一覧を見る
+              </button>
             </div>
-          </div><!-- /.un_spec_item -->
+          </div>
+          <!-- /.un_spec_item -->
           <div class="un_spec_item">
-            <div class="un_spec_itemName">アダプタの<br>アダプタ</div>
+            <div class="un_spec_itemName">アダプタの<br />アダプタ</div>
             <div class="un_spec_itemSeries"><strong>OC-BA</strong> series</div>
             <div class="un_spec_itemImg">
               <img
@@ -95,10 +300,14 @@
               <li>1系統配管で動作可能なアタッチメント対象</li>
             </ul>
             <div class="un_spec_itemBtn">
-              <button @click="openModal('spec', 'spec3')">仕様一覧を見る</button>
+              <button @click="openModal('spec', 'spec3')">
+                仕様一覧を見る
+              </button>
             </div>
-          </div><!-- /.un_spec_item -->
-        </div><!-- /.un_specLineup -->
+          </div>
+          <!-- /.un_spec_item -->
+        </div>
+        <!-- /.un_specLineup -->
       </section>
 
       <section class="ly_attachment">

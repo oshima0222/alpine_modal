@@ -59,14 +59,15 @@
     gap: 8px;
     &::before {
       display: flex;
-      content: '　';
+      content: "　";
       align-items: baseline;
       line-height: 1;
       flex: 0 0 1.125em;
       width: 1.125em;
       height: 1.125em;
       overflow: hidden;
-      background: url('/assets/images/spec_icon_check.svg') no-repeat center center;
+      background: url("/assets/images/spec_icon_check.svg") no-repeat center
+        center;
       background-size: contain;
     }
   }

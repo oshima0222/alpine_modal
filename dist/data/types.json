@@ -1,10 +1,12 @@
 [
 	{
 		"id": "ochp",
-		"name": "OC-HP：完全油圧式ワンキャッチ"
+		"code": "OC-HP",
+		"name": "完全油圧式ワンキャッチ"
 	},
 	{
 		"id": "ocehp",
-		"name": "OC-EHP：完全油圧式ワンキャッチプラス"
+		"code": "OC-EHP",
+		"name": "完全油圧式ワンキャッチプラス"
 	}
 ]

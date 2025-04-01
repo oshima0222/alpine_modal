@@ -1,0 +1,29 @@
+@use "../configs" as *;
+
+.ly_globalHeader {
+  position: fixed;
+  padding: 24px;
+  top: -30px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease-in;
+  opacity: 0;
+  &.is-show {
+    opacity: 1;
+    top: 0;
+  }
+}
+
+.ly_globalHeader_inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: min(90%, 1200px);
+  padding: 16px 32px;
+  height: 100px;
+  background: #fff;
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+}

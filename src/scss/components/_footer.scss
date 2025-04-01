@@ -46,7 +46,9 @@
       overflow: hidden;
       border: solid 1px $color-gray-200;
       border-radius: 50%;
-      background: $color-white url('/assets/images/icon_angle_right_gray900.svg') no-repeat center center;
+      background: $color-white
+        url("/assets/images/icon_angle_right_gray900.svg") no-repeat center
+        center;
       background-size: 50% auto;
     }
   }

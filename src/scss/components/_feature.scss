@@ -1,0 +1,172 @@
+@use "../configs" as *;
+
+.ly_feature {
+  position: relative;
+  border-radius: 64px;
+  max-width: 100vw;
+}
+
+.un_feature_item {
+  position: sticky;
+  top: -300px;
+  width: 100%;
+  border-radius: 64px;
+}
+
+.un_feature_itemInner {
+  width: 100%;
+  padding-bottom: 64px;
+  overflow-x: hidden;
+}
+
+.un_feature_item__ochp {
+  background-color: #ffe100;
+  z-index: 1;
+  &::after {
+    content: "";
+    display: block;
+    height: 1100px;
+  }
+}
+
+.un_feature_item__ocehp {
+  background-color: #ffcc00;
+  z-index: 2;
+}
+
+.un_feature_item__ocba {
+  background-color: #ffbb00;
+  z-index: 3;
+}
+
+.un_feature_product {
+  position: relative;
+  max-height: 590px;
+}
+
+.un_feature_productImg {
+  margin: 0 auto;
+  width: min(480px, 480/1224 * 100vw);
+}
+
+.un_feature_productName {
+  max-width: 100%;
+  overflow: hidden;
+  position: absolute;
+  height: min(180px, 180/1224 * 100vw);
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  z-index: -1;
+  opacity: 0.85;
+}
+
+.un_feature_productName .inner {
+  display: flex;
+  img {
+    height: min(180px, 180/1224 * 100vw);
+    max-width: inherit;
+    width: auto;
+  }
+}
+
+.un_feature_content {
+  @include inner;
+}
+
+.un_feature_contentTitle {
+  margin-bottom: 40px;
+  font-family: "Noto Sans JP", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 900;
+  font-size: 40px;
+  text-align: center;
+  font-feature-settings: "palt";
+  letter-spacing: 0.04em;
+}
+
+.un_feature_contentList {
+  display: flex;
+  gap: 40px;
+}
+
+.un_feature_card {
+  flex: 0 0 auto;
+  width: 350px;
+  padding: 32px;
+  border-radius: 32px;
+  background: #fff;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+}
+
+.un_feature_cardHeader {
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  list-style: 1.3;
+  i {
+    flex: 0 0 56px;
+    width: 56px;
+    height: 56px;
+  }
+  h3 {
+    margin: 0;
+    line-height: 1.4;
+    font-weight: 700;
+  }
+}
+
+.un_feature_cardImage {
+  margin-left: -32px;
+  margin-right: -32px;
+  position: relative;
+  height: 0;
+  padding-top: 69.93006993006993%; // 4:7  200/(350-64)*100
+  background: $color-gray-100; // 後で消す
+  z-index: -1;
+  img {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+}
+
+.un_feature_cardBody {
+  margin-top: auto;
+}
+
+.un_feature_cardBody p {
+  font-size: 16px;
+}
+
+.un_feature_cardBtn {
+  margin-left: auto;
+  margin-right: 0;
+  display: flex;
+  width: fit-content;
+  align-items: center;
+  font-weight: 700;
+  text-decoration: none;
+  color: $color-thema-yellow-100;
+  background-color: $color-gray-950;
+  gap: 8px;
+  padding: 8px 8px 8px 24px;
+  border-radius: 100px;
+  appearance: none;
+  &::after {
+    display: block;
+    content: "";
+    flex: 0 0 32px;
+    width: 32px;
+    height: 32px;
+    overflow: hidden;
+    border-radius: 50%;
+    background: $color-white;
+  }
+}

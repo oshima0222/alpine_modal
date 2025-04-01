@@ -16,9 +16,10 @@ $color-gray-900: oklch(0.21 0.034 264.665);
 $color-gray-950: oklch(0.13 0.028 261.692);
 
 // Font Families
-$font-family-base: "Zen Kaku Gothic New", "Noto Sans JP", sans-serif;
+$font-family-base: "Zen Kaku Gothic New", sans-serif;
 $font-family-barlow: "Barlow Condensed", sans-serif;
 $font-family-roboto: "Roboto Condensed", sans-serif;
+$font-family-noto: "Noto Sans JP", sans-serif;
 
 $breakpoints: (
   "xs": 375px,
