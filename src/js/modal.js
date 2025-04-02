@@ -1,4 +1,4 @@
-// modal.js
+// src/js/modal.js
 import Swiper from "swiper";
 
 export default function modalComponent() {
