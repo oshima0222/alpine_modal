@@ -8,21 +8,37 @@
 .ly_globalFooter_inner {
   max-width: 1600px;
   background-color: $color-gray-100;
-  border-radius: 80px 80px 0 0;
-  padding-top: 80px;
-  padding-bottom: 40px;
+  border-radius: min(vw("xs", 40), 80px) min(vw("xs", 40), 80px) 0 0;
+  padding-top: min(vw("xs", 48), 64px);
+  padding-bottom: min(vw("xs", 24), 40px);
   padding-left: 5vw;
   padding-right: 5vw;
 }
 
 .bl_gf_main {
+  padding-left: min(vw('xs', 16), 16px);
+  padding-right: min(vw('xs', 16), 16px);
+  padding-bottom: min(vw('xs', 24), 32px);
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
   max-width: 980px;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: min(vw('xs', 24), 32px);
   border-bottom: solid 1px $color-gray-300;
+  gap: min(vw("xs", 32), 24px);
+  @include mq(md) {
+    flex-direction: row;
+  }
+}
+
+.bl_gf_prodlogo {
+  width: min(50vw, 180px);
+  @include mq(md) {
+    width: min(28%, 274px);
+  }
 }
 
 .bl_gf_contact {
@@ -58,6 +74,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-left: min(vw('xs', 16), 16px);
+  padding-right: min(vw('xs', 16), 16px);
   max-width: 980px;
   margin-left: auto;
   margin-right: auto;
@@ -67,4 +85,8 @@
   font-family: $font-family-roboto;
   font-weight: 300;
   color: $color-gray-600;
+}
+
+.bl_gf_corplogo {
+  width: min(40%, 140px);
 }

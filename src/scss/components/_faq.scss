@@ -2,18 +2,18 @@
 
 .ly_faq {
   position: relative;
-  margin-top: -80px;
-  padding-top: 160px;
-  padding-bottom: 80px;
+  margin-top: max(vw("xs", -40), -80px);
+  padding-top: min(vw("xs", 80), 160px);
+  padding-bottom: min(vw("xs", 40), 80px);
   background: url("/assets/images/faq_bg.svg") no-repeat center center;
   background-size: cover;
-  border-radius: 0 0 80px 80px;
+  border-radius: 0 0 min(vw("xs", 40), 80px) min(vw("xs", 40), 80px);
   z-index: -1;
 }
 
 .ly_faq_content {
-  padding: 64px;
-  border-radius: 64px;
+  padding: min(vw("xs", 24), 64px);
+  border-radius: min(vw("xs", 24), 64px);
   background: $color-white;
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.1);
 }
@@ -22,19 +22,19 @@
   max-width: min(60%, 466px);
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 40px;
+  margin-bottom: min(vw('xs', 24), 40px);
 }
 
 .un_faq_item {
   &:not(:first-child) {
-    padding-top: 40px;
+    padding-top: min(vw('xs', 24), 40px);
   }
   &:not(:last-child) {
-    padding-bottom: 40px;
+    padding-bottom: min(vw('xs', 24), 40px);
     border-bottom: solid 1px $color-gray-200;
   }
   dt {
-    font-weight: 900;
+    font-weight: 700;
     margin-bottom: 8px;
     display: flex;
     align-items: first baseline;
@@ -47,8 +47,11 @@
     display: flex;
     font-family: "Klee One", cursive;
     align-items: first baseline;
-    margin-inline-start: 32px;
+    margin-inline-start: 0;
     gap: 8px;
+    @include mq(md) {
+      margin-inline-start: min(vw('md', 8), 32px);
+    }
     > p {
       margin: 0;
     }
@@ -65,17 +68,18 @@
 }
 
 .un_faq_icon__q {
-  flex: 0 0 72px;
-  width: 72px;
-  height: 72px;
+  flex: 0 0 min(vw('xs', 32), 72px);
+  width: min(vw('xs', 32), 72px);
+  height: min(vw('xs', 32), 72px);
   background-color: $color-thema-yellow-100;
 }
 
 .un_faq_icon__a {
-  flex: 0 0 96px;
-  width: 96px;
-  height: 96px;
+  flex: 0 0 min(vw('xs', 48), 96px);
+  width: min(vw('xs', 48), 96px);
+  height: min(vw('xs', 48), 96px);
   text-indent: -9999px;
   background: url("/assets/images/faq_answer.svg") no-repeat center center;
   background-size: contain;
+  box-shadow: 0 0 1px 0 $color-gray-400;
 }

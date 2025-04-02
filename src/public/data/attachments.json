@@ -22,6 +22,182 @@
 		]
 	},
 	{
+		"id": "BK-17-400-HP2",
+		"name_ja": "標準バケット",
+		"name_en": "Standard Bucket",
+		"code": "BK-17-400-HP",
+		"image": "bk-17-400-hp.png",
+    "plumbing": "機械式",
+		"compatibleLineup": [
+			"OC-17HP",
+      "OC-17EHP"
+		],
+		"specs": [
+			{
+				"term": "対応完全油圧式ワンキャッチ",
+				"description": "..."
+			},
+			{
+				"term": "質量",
+				"description": "90kg"
+			}
+		]
+	},
+	{
+		"id": "BK-17-400-HP3",
+		"name_ja": "標準バケット",
+		"name_en": "Standard Bucket",
+		"code": "BK-17-400-HP",
+		"image": "bk-17-400-hp.png",
+    "plumbing": "機械式",
+		"compatibleLineup": [
+			"OC-17HP",
+      "OC-17EHP"
+		],
+		"specs": [
+			{
+				"term": "対応完全油圧式ワンキャッチ",
+				"description": "..."
+			},
+			{
+				"term": "質量",
+				"description": "90kg"
+			}
+		]
+	},
+	{
+		"id": "BK-17-400-HP4",
+		"name_ja": "標準バケット",
+		"name_en": "Standard Bucket",
+		"code": "BK-17-400-HP",
+		"image": "bk-17-400-hp.png",
+    "plumbing": "機械式",
+		"compatibleLineup": [
+			"OC-17HP",
+      "OC-17EHP"
+		],
+		"specs": [
+			{
+				"term": "対応完全油圧式ワンキャッチ",
+				"description": "..."
+			},
+			{
+				"term": "質量",
+				"description": "90kg"
+			}
+		]
+	},
+	{
+		"id": "BK-17-400-HP5",
+		"name_ja": "標準バケット",
+		"name_en": "Standard Bucket",
+		"code": "BK-17-400-HP",
+		"image": "bk-17-400-hp.png",
+    "plumbing": "機械式",
+		"compatibleLineup": [
+			"OC-17HP",
+      "OC-17EHP"
+		],
+		"specs": [
+			{
+				"term": "対応完全油圧式ワンキャッチ",
+				"description": "..."
+			},
+			{
+				"term": "質量",
+				"description": "90kg"
+			}
+		]
+	},
+	{
+		"id": "BK-17-400-HP6",
+		"name_ja": "標準バケット",
+		"name_en": "Standard Bucket",
+		"code": "BK-17-400-HP",
+		"image": "bk-17-400-hp.png",
+    "plumbing": "機械式",
+		"compatibleLineup": [
+			"OC-17HP",
+      "OC-17EHP"
+		],
+		"specs": [
+			{
+				"term": "対応完全油圧式ワンキャッチ",
+				"description": "..."
+			},
+			{
+				"term": "質量",
+				"description": "90kg"
+			}
+		]
+	},
+	{
+		"id": "BK-17-400-HP7",
+		"name_ja": "標準バケット",
+		"name_en": "Standard Bucket",
+		"code": "BK-17-400-HP",
+		"image": "bk-17-400-hp.png",
+    "plumbing": "機械式",
+		"compatibleLineup": [
+			"OC-17HP",
+      "OC-17EHP"
+		],
+		"specs": [
+			{
+				"term": "対応完全油圧式ワンキャッチ",
+				"description": "..."
+			},
+			{
+				"term": "質量",
+				"description": "90kg"
+			}
+		]
+	},
+	{
+		"id": "BK-17-400-HP8",
+		"name_ja": "標準バケット",
+		"name_en": "Standard Bucket",
+		"code": "BK-17-400-HP",
+		"image": "bk-17-400-hp.png",
+    "plumbing": "機械式",
+		"compatibleLineup": [
+			"OC-17HP",
+      "OC-17EHP"
+		],
+		"specs": [
+			{
+				"term": "対応完全油圧式ワンキャッチ",
+				"description": "..."
+			},
+			{
+				"term": "質量",
+				"description": "90kg"
+			}
+		]
+	},
+	{
+		"id": "BK-17-400-HP9",
+		"name_ja": "標準バケット",
+		"name_en": "Standard Bucket",
+		"code": "BK-17-400-HP",
+		"image": "bk-17-400-hp.png",
+    "plumbing": "機械式",
+		"compatibleLineup": [
+			"OC-17HP",
+      "OC-17EHP"
+		],
+		"specs": [
+			{
+				"term": "対応完全油圧式ワンキャッチ",
+				"description": "..."
+			},
+			{
+				"term": "質量",
+				"description": "90kg"
+			}
+		]
+	},
+	{
 		"id": "BK-32-280-HP",
 		"name_ja": "標準バケット",
 		"name_en": "Standard Bucket",

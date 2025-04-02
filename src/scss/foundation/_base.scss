@@ -5,16 +5,7 @@ html {
   color: $color-gray-900;
   font-family: $font-family-base;
   line-height: 1.5;
-  // モバイル基準 (xs)
-  font-size: vw("xs", 12);
-  // タブレット (md)
-  @include mq("md") {
-    font-size: vw("md", 14);
-  }
-  // デスクトップ (lg) - 最大値を設定
-  @include mq("lg") {
-    font-size: min(vw("lg", 18), 18px);
-  }
+  font-size: min(vw("xs", 14), 18px);
 }
 
 img {

@@ -2,19 +2,10 @@
 
 .ly_attachment {
   background-color: $color-gray-100;
-  padding: varget("xs", $section-padding) 0;
-  border-radius: varget("xs", $section-radius);
-  @include mq("md") {
-    padding: varget("md", $section-padding) 0;
-    border-radius: varget("md", $section-radius);
-  }
-  @include mq("lg") {
-    padding: varget("lg", $section-padding) 0;
-    border-radius: min(
-      vw("lg", varget("lg", $section-radius)),
-      varget("lg", $section-radius)
-    );
-  }
+  padding-top: min(vw("xs", 40), 80px);
+  padding-bottom: min(vw("xs", 40), 80px);
+  border-radius: min(vw("xs", 40), 80px);
+  box-shadow: 0 0 2px 0 $color-gray-300;
 }
 
 .ly_attachmentType {
@@ -25,20 +16,20 @@
   width: fit-content;
   margin-left: auto;
   margin-right: auto;
-  padding: 16px;
+  padding: min(vw("xs", 8), 16px);
   display: flex;
   list-style: none;
-  gap: 24px;
-  border-radius: 32px;
+  gap: min(vw("xs", 8), 16px);
+  border-radius: min(vw("xs", 20), 24px);
   background-color: $color-gray-200;
   li {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 4px;
-    padding: 24px;
+    text-align: center;
+    padding: min(vw("xs", 16), 20px);
     background-color: $color-white;
-    border-radius: 24px;
+    border-radius: min(vw("xs", 16), 20px);
     cursor: pointer;
     &.is_active {
       background: $color-thema-yellow-100;
@@ -50,7 +41,7 @@
 .un_attachmentType_itemCode {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 0.5em;
   font-family: $font-family-roboto;
   font-weight: 500;
   strong {
@@ -65,6 +56,9 @@
 
 .ly_attachmentLineup {
   @include inner();
+}
+
+.ly_attachmentLineup_inner {
   border-top: solid 1px $color-gray-300;
   border-bottom: solid 1px $color-gray-300;
 }
@@ -73,6 +67,7 @@
   display: flex;
   overflow-x: scroll;
   list-style: none;
+  padding: 0;
   gap: 32px;
   li {
     flex: 0 0 180px;
@@ -92,7 +87,7 @@
 }
 
 .un_attachmentLineup_itemName {
-  font-size: 16px;
+  font-size: min(vw("xs", 14), 16px);
 }
 
 .un_attachmentLineup_itemImg {
@@ -106,20 +101,17 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-  font-size: 16px;
+  font-size: min(vw("xs", 14), 16px);
   color: $color-gray-600;
   > img {
-    width: 24px;
+    width: 1.5em;
   }
 }
 
 .un_attachmentLineup_classVal {
-  font-size: 24px;
+  font-size: min(vw("xs", 20), 24px);
   font-weight: 800;
   line-height: 1;
-}
-
-.ly_attachmentList {
 }
 
 .ly_attachmentList_select {
@@ -127,11 +119,16 @@
   display: flex;
   flex-wrap: wrap;
   list-style: none;
-  gap: 32px;
   justify-content: flex-start;
   > li {
     position: relative;
-    flex: 0 0 calc((100% - 32px * 4) / 5);
+    flex: 0 0 calc((100% - 16px) / 2);
+    @include mq(lg) {
+      flex: 0 0 calc((100% - 24px * 3) / 4);
+    }
+    @include mq(lg) {
+      flex: 0 0 calc((100% - 32px * 4) / 5);
+    }
   }
 }
 

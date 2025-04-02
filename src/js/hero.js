@@ -65,7 +65,7 @@ window.onload = async () => {
           duration: 0.25,
           onComplete: function () {
             setTimeout(createGrid, 500);
-            document.querySelector(".bl_globalHeader").classList.add("is-show");
+            document.querySelector(".ly_globalHeader").classList.add("is-show");
           },
         },
         "+=2",

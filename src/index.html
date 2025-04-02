@@ -25,6 +25,7 @@
     </header>
     <div x-data="modalComponent">
       <section class="ly_hero" id="hero"></section>
+      <p>これが標準テキストサイズやで</p>
       <section class="ly_intro">
         <div class="ly_intro_inner">
           <h2 class="bl_intro_catch">
@@ -144,7 +145,7 @@
                     <h3>安全対策は徹底されている！</h3>
                   </div>
                   <div class="un_feature_cardImage">
-                    <img src="/assets/images/feat_card_coupler.png" alt="" />
+                    <img src="/assets/images/feat_card_safety.png" alt="" />
                   </div>
                   <div class="un_feature_cardBody">
                     <p>
@@ -274,7 +275,9 @@
               <li>1系統配管のショベルで使用可能</li>
               <li>追加配管などショベル側の改造不要</li>
               <li>
-                旋回＆開閉動作アタッチメントを使いたい（※電気配線により可能）
+                旋回＆開閉動作アタッチメントを使いたい<small
+                  >（※電気配線により可能）</small
+                >
               </li>
             </ul>
             <div class="un_spec_itemBtn">
@@ -284,7 +287,7 @@
             </div>
           </div>
           <!-- /.un_spec_item -->
-          <div class="un_spec_item">
+          <div class="un_spec_item un_spec_item__ocba">
             <div class="un_spec_itemName">アダプタの<br />アダプタ</div>
             <div class="un_spec_itemSeries"><strong>OC-BA</strong> series</div>
             <div class="un_spec_itemImg">
@@ -334,38 +337,40 @@
           </ul>
         </nav>
         <div class="ly_attachmentLineup">
-          <ul class="un_attachmentLineup_select">
-            <template x-for="lineup in displayedLineup" :key="lineup.id">
-              <li
-                @click="selectLineup(lineup.id)"
-                :class="{ 'is_active': selectedLineup === lineup.id }"
-              >
-                <div
-                  class="un_attachmentLineup_itemName"
-                  x-text="lineup.name"
-                ></div>
-                <div class="un_attachmentLineup_itemImg">
-                  <img
-                    :src="'/assets/images/attachment/' + lineup.image"
-                    :alt="lineup.name"
-                  />
-                </div>
-                <div class="un_attachmentLineup_class">
-                  <div class="un_attachmentLineup_className">
-                    <img
-                      src="/assets/images/attachment/icon_class.svg"
-                      alt=""
-                    />
-                    class
-                  </div>
+          <div class="ly_attachmentLineup_inner">
+            <ul class="un_attachmentLineup_select">
+              <template x-for="lineup in displayedLineup" :key="lineup.id">
+                <li
+                  @click="selectLineup(lineup.id)"
+                  :class="{ 'is_active': selectedLineup === lineup.id }"
+                >
                   <div
-                    class="un_attachmentLineup_classVal"
-                    x-text="lineup.class"
+                    class="un_attachmentLineup_itemName"
+                    x-text="lineup.name"
                   ></div>
-                </div>
-              </li>
-            </template>
-          </ul>
+                  <div class="un_attachmentLineup_itemImg">
+                    <img
+                      :src="'/assets/images/attachment/' + lineup.image"
+                      :alt="lineup.name"
+                    />
+                  </div>
+                  <div class="un_attachmentLineup_class">
+                    <div class="un_attachmentLineup_className">
+                      <img
+                        src="/assets/images/attachment/icon_class.svg"
+                        alt=""
+                      />
+                      class
+                    </div>
+                    <div
+                      class="un_attachmentLineup_classVal"
+                      x-text="lineup.class"
+                    ></div>
+                  </div>
+                </li>
+              </template>
+            </ul>
+          </div>
         </div>
         <div class="ly_attachmentList">
           <ul class="ly_attachmentList_select">
@@ -541,7 +546,7 @@
                 <dt>
                   <i class="un_faq_icon un_faq_icon__q">Q</i>
                   <p>
-                    すごく質問が入った場合のサンプルです。文字サイズ、色、フォントの種類はこの様になっています。メロスは激怒した。必ず、かの邪智暴虐の王を除かなければならぬと決意した。メロスには政治がわからぬ。メロスは、村の牧人である。笛を吹き、羊と遊んで暮して来た。けれども邪悪に対しては、人一倍に敏感であった。きょう未明メロスは村を出発し、野を越え山越え、十里はなれた此のシラクスの市にやって来た。メロスには父も、母も無い。女房も無い。電話も無い。ガスも無い。バスは一日一度来る。
+                    長い質問が入った場合のサンプルです。文字サイズ、色、フォントの種類はこの様になっています。メロスは激怒した。必ず、かの邪智暴虐の王を除かなければならぬと決意した。メロスには政治がわからぬ。メロスは、村の牧人である。笛を吹き、羊と遊んで暮して来た。けれども邪悪に対しては、人一倍に敏感であった。きょう未明メロスは村を出発し、野を越え山越え、十里はなれた此のシラクスの市にやって来た。メロスには父も、母も無い。女房も無い。電話も無い。ガスも無い。バスは一日一度来る。
                   </p>
                 </dt>
                 <dd>

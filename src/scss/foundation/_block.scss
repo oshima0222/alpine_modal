@@ -5,16 +5,14 @@
   display: flex;
   flex-direction: column-reverse;
   align-items: center;
-  margin-bottom: 56px;
+  margin-bottom: min(vw("xs", 32), 56px);
   gap: 8px;
 }
 
 .bl_sectionHeader_heading {
   margin: 0;
   font-weight: 800;
-  @include mq("lg") {
-    font-size: min(vw("lg", 24), 24px);
-  }
+  font-size: min(vw("xs", 20), 24px);
 }
 
 .bl_sectionHeader_headingEn {
@@ -23,9 +21,7 @@
   font-family: $font-family-barlow;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
   line-height: 1;
-  @include mq("lg") {
-    font-size: min(vw("lg", 96), 96px);
-  }
+  font-size: min(vw("xs", 56), 96px);
+  letter-spacing: 0.05em;
 }
