@@ -1,4 +1,3 @@
-// src/js/feature.js
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -9,10 +8,12 @@ gsap.registerPlugin(ScrollTrigger);
 // --- 初期化関数をエクスポート ---
 export default function initFeatureAnimations() {
   // 横スクロールアニメーション
-  const featLists = gsap.utils.toArray(".un_feature_contentList");
-  featLists.forEach((list, index) => {
-    const listWidth = list.scrollWidth; // ここで取得
-    const listVisibleWidth = list.offsetWidth;
+  const featItems = gsap.utils.toArray(".un_feature_item"); // ★ 親要素を取得
+
+  featItems.forEach((item, index) => {
+    const list = item.querySelector(".un_feature_contentList"); // ★ 親要素から list を取得
+    const listWidth = list ? list.scrollWidth: 0; // ここで取得
+    const listVisibleWidth = list ? list.offsetWidth: 0;
 
     // scrollWidth が offsetWidth より大きい場合のみアニメーション設定
     if (listWidth > listVisibleWidth) {

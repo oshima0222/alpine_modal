@@ -1,0 +1,130 @@
+@use "../configs" as *;
+
+.md_setup_lead {
+  margin-bottom: 2rem;
+  text-align: justify;
+  @include mq(md) {
+    line-height: 1.75;
+  }
+  p {
+    margin: 0;
+  }
+}
+
+.md_setupManual {
+  padding: min(vw('xs', 8), 24px);
+  border-radius: min(vw('xs', 16), 24px);
+  background-color: $color-gray-100;
+}
+
+.md_setupManual_header {
+  padding: min(vw('xs', 16), 16px) min(vw('xs', 16), 40px) 0;
+  margin-bottom: 1.5rem;
+}
+
+.md_setupManual_title {
+  line-height: 1.3;
+  margin: 0 0 .5em;
+  text-align: center;
+  font-weight: 900;
+  font-size: min(vw('xs', 20), 24px);
+}
+
+.md_setupManual_flow {
+  margin-bottom: min(vw('xs', 16), 24px);
+  padding: min(vw('xs', 16), 40px);
+  border-radius: min(vw('xs', 16), 24px);
+  background-color: $color-white;
+}
+
+.md_setupManual_step {
+  h4 {
+    display: flex;
+    align-items: first baseline;
+    font-weight: 500;
+    font-size: min(vw('xs', 12), 20px);
+    margin: 0 0 .75rem;
+    line-height: 1.3;
+    i {
+      padding: 0 .4em;
+      flex: 0 0 1.3em;
+      height: 1.3em;
+      margin-right: min(vw('xs', 4), 8px);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background-color: $color-gray-900;
+      color: $color-thema-yellow-100;
+      font-family: $font-family-barlow;
+      font-weight: 600;
+      font-style: normal ;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+  }
+  &:not(:last-child) {
+    &::after {
+      display: block;
+      content: '';
+      margin: min(vw('xs', 16), 16px) auto;
+      width: min(vw('xs', 20), 32px);
+      height: min(vw('xs', 20), 32px);
+      background: url('/assets/images/feat_setup_arrow.svg') no-repeat center center;
+      background-size: contain;
+    }
+  }
+}
+
+.md_setupManual_caption {
+  font-size: min(vw('xs', 12), 16px);
+  margin-top: min(vw('xs',4),8px);
+}
+
+.md_setupManual_step__step1,
+.md_setupManual_step__step4 {
+  @include mq(md) {
+    .md_setupManual_step_body {
+      display: flex;
+      gap: min(vw('md',16), 32px);
+    }
+    .md_setupManual_caption {
+      margin-top: 0;
+    }
+  }
+}
+
+.md_setupManual_movie {
+  text-align: center;
+  width: min(100%, 640px);
+  padding: min(vw('xs', 16), 24px) min(vw('xs', 8), 24px);
+  margin-left: auto;
+  margin-right: auto;
+  h4 {
+    margin-top: 0;
+    margin-bottom: min(vw('xs',8),8px);
+    font-size: min(vw('xs',16),20px);
+    font-weight: 700;
+  }
+}
+
+.md_setupManual_movie_embed {
+  position: relative;
+  height: 0;
+  width: 100%;
+  margin-bottom: min(vw('xs',4),8px);
+  padding-top: 56.25%;
+  overflow: hidden;
+  iframe {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+  }
+}
+
+.md_setupManual_movie_caption {
+  font-size: min(vw('xs',12),16px);
+  font-weight: 400;
+  color: $color-gray-600;
+}

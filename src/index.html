@@ -25,7 +25,6 @@
     </header>
     <div x-data="modalComponent">
       <section class="ly_hero" id="hero"></section>
-      <p>これが標準テキストサイズやで</p>
       <section class="ly_intro">
         <div class="ly_intro_inner">
           <h2 class="bl_intro_catch">
@@ -188,7 +187,25 @@
                 完全油圧式ワンキャッチプラスのここがスゴい！
               </h3>
               <div class="un_feature_contentList">
-                <div class="un_feature_card">特徴2-1</div>
+                <div class="un_feature_card">
+                  <div class="un_feature_cardHeader">
+                    <i
+                      ><img src="/assets/images/feat_icon_speedy.svg" alt=""
+                    /></i>
+                    <h3>国産初の完全油圧式でスピーディー着脱！</h3>
+                  </div>
+                  <div class="un_feature_cardImage">
+                    <img src="/assets/images/feat_card_speedy.png" alt="" />
+                  </div>
+                  <div class="un_feature_cardBody">
+                    <p>
+                      ワンキャッチなら、キャビン内からアタッチメントをスピーディーで簡単、安全に着脱可能です。
+                    </p>
+                    <div class="un_feature_cardBtn">
+                      <span>詳しく見る</span>
+                    </div>
+                  </div>
+                </div>
                 <div class="un_feature_card">特徴2-2</div>
                 <div class="un_feature_card">特徴2-3</div>
               </div>
@@ -221,7 +238,25 @@
                 アダプタのアダプタのここがスゴい！
               </h3>
               <div class="un_feature_contentList">
-                <div class="un_feature_card">特徴3-1</div>
+                <div class="un_feature_card">
+                  <div class="un_feature_cardHeader">
+                    <i
+                      ><img src="/assets/images/feat_icon_speedy.svg" alt=""
+                    /></i>
+                    <h3>国産初の完全油圧式でスピーディー着脱！</h3>
+                  </div>
+                  <div class="un_feature_cardImage">
+                    <img src="/assets/images/feat_card_speedy.png" alt="" />
+                  </div>
+                  <div class="un_feature_cardBody">
+                    <p>
+                      ワンキャッチなら、キャビン内からアタッチメントをスピーディーで簡単、安全に着脱可能です。
+                    </p>
+                    <div class="un_feature_cardBtn">
+                      <span>詳しく見る</span>
+                    </div>
+                  </div>
+                </div>
                 <div class="un_feature_card">特徴3-2</div>
               </div>
             </div>
@@ -424,7 +459,6 @@
             x-transition:leave="slide-leave-active"
             x-transition:leave-end="slide-leave-to"
           >
-            <button class="bl_modal_close" @click="closeModal">&times;</button>
             <h4 x-text="currentModalContent?.title"></h4>
             <div x-html="currentModalContent?.content"></div>
             <div x-show="currentModalContent">
@@ -440,6 +474,9 @@
               >
                 次へ
               </button>
+            </div>
+            <div class="bl_modal_close">
+              <button @click="closeModal">&times;</button>
             </div>
           </div>
         </div>

@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Alpine.js Modals</title>
+    <link rel="stylesheet" href="./scss/style.scss" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Klee+One&family=Noto+Sans+JP:wght@100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Zen+Kaku+Gothic+New:wght@300;400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div>
+      <div class="bl_modal_overlay fade">
+        <div class="bl_modal_content slide">
+          <div class="ly_featModal">
+            <div class="ly_featModal_header">
+              <i><img src="/assets/images/feat_icon_shovel.svg" alt="" /></i>
+              <h2>取り付け簡単！<span class="hp_inline-block">ショベル本体の改造も不要</span></h2>
+            </div>
+            <div class="ly_featModal_body">
+              <div class="md_speedy_lead">
+                <p>追加配管など油圧ショベル本体の面倒な改造が一切不要、それがワンキャッチの最大の特徴です。
+                  配線作業も驚くほど簡単！そのセットアップ方法とは？</p>
+              </div><!-- /.md_speedy_lead -->
+              <div class="md_setupManual">
+                <div class="md_setupManual_header">
+                  <h3 class="md_setupManual_title">ワンキャッチの<span class="hp_inline-block">装着手順を徹底解説！</span></h3>
+                </div>
+                <div class="md_setupManual_flow">
+                  <div class="md_setupManual_step md_setupManual_step__step1">
+                    <h4><i>Step1</i>必要なパーツと道具を揃えておく</h4>
+                    <div class="md_setupManual_step_body">
+                      <div class="md_setupManual_image"><img src="/assets/images/feat_setup01.png" alt=""></div>
+                      <div class="md_setupManual_caption">ワンキャッチとアーム先端に差し込むピンや抜け防止ボルト、ナットのほか、装着に必要なツールはあらかじめ用意して近くに置いておく。</div>
+                    </div>
+                  </div>
+                  <div class="md_setupManual_step md_setupManual_step__step2">
+                    <h4><i>Step2</i>アーム先端と取付穴の位置を合わせる</h4>
+                    <div class="md_setupManual_step_body">
+                      <div class="md_setupManual_image"><img src="/assets/images/feat_setup02.png" alt=""></div>
+                      <div class="md_setupManual_caption">アーム先端の取付穴とワンキャッチの取付穴の位置をぴったり合わせる。慣れると位置合わせも短時間ですむ。</div>
+                    </div>
+                  </div>
+                  <div class="md_setupManual_step md_setupManual_step__step3">
+                    <h4><i>Step3</i>取付ピンを挿入してボルトで固定する</h4>
+                    <div class="md_setupManual_step_body">
+                      <div class="md_setupManual_image"><img src="/assets/images/feat_setup03.png" alt=""></div>
+                      <div class="md_setupManual_caption">ハンマーを使ってピンを差し込んだら、抜け防止用のボルトを留める。一方を固定したら、もう一方のピンも差し込んで同様にボルトで留める。</div>
+                    </div>
+                  </div>
+                  <div class="md_setupManual_step md_setupManual_step__step4">
+                    <h4><i>Step4</i>ホースを取り付ける</h4>
+                    <div class="md_setupManual_step_body">
+                      <div class="md_setupManual_image"><img src="/assets/images/feat_setup04.png" alt=""></div>
+                      <div class="md_setupManual_caption">ホースの取り付け箇所をパーツクリーナーで洗浄した後、ホースを取り付ける。取り付けが完了したら、ストップバルブを開く。</div>
+                    </div>
+                  </div>
+                  <div class="md_setupManual_step md_setupManual_step__step5">
+                    <h4><i>Step5</i>電気ケーブルを配線する</h4>
+                    <div class="md_setupManual_step_body">
+                      <div class="md_setupManual_image"><img src="/assets/images/feat_setup05.png" alt=""></div>
+                      <div class="md_setupManual_caption">電源ケーブルのプラグをワンキャッチのソケットに差し込み、アームに電源ケーブルを沿わせて結束バンドで留める。</div>
+                    </div>
+                  </div>
+                  <div class="md_setupManual_step md_setupManual_step__step6">
+                    <h4><i>Step6</i>リモコンをセットアップ</h4>
+                    <div class="md_setupManual_step_body">
+                      <div class="md_setupManual_image"><img src="/assets/images/feat_setup06.png" alt=""></div>
+                      <div class="md_setupManual_caption">一方のケーブルはショベルの操縦席のソケットに差し込む。コントローラーは操縦席横に磁石でピタッ。最後に結束バンドの余分をカットして終了。</div>
+                    </div>
+                  </div>
+                  <div class="md_setupManual_step md_setupManual_step__step7">
+                    <h4><i>Step7</i>取り付け完了！</h4>
+                    <div class="md_setupManual_step_body">
+                      <div class="md_setupManual_image"><img src="/assets/images/feat_setup07.png" alt=""></div>
+                      <div class="md_setupManual_caption">慎重に進めたからか、装着に要した時間は16分。近くで見守っていたベテランスタッフは「慣れたら10分を切れるようになるから、絶対!」</div>
+                    </div>
+                  </div>
+                </div><!-- /.md_setupManual_flow -->
+                <div class="md_setupManual_movie">
+                  <h4>取り付け方法を動画で見る</h4>
+                  <div class="md_setupManual_movie_embed">
+                    <iframe src="https://www.youtube.com/embed/7O1nH3RrWRw?si=psT-4UKT-m3GCiRe" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                  </div>
+                  <div class="md_setupManual_movie_caption">取り付けカンタン！<span class="hp_inline-block">ワンキャッチ完全油圧式タイプ編</span></div>
+                </div><!-- /.md_setupManual_movie -->
+
+              </div><!-- /.md_setupManual -->
+            </div>
+          </div>
+          <div>
+            <button style="display: none;">
+              前へ
+            </button>
+            <button>
+              次へ
+            </button>
+          </div>
+          <div class="bl_modal_close">
+            <button>×</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="./js/main.js"></script>
+  </body>
+</html>

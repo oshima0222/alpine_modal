@@ -32,11 +32,12 @@ export default async function initHero(targetElementId) {
         autoDensity: true,
     });
     target.appendChild(app.canvas); // CanvasをDOMに追加
+    app.stage.eventMode = 'passive'; // イベントは受け取るが、デフォルト動作を妨げにくい
+    app.canvas.style.touchAction = 'auto'; // ブラウザにタッチ操作を委ねる
   } catch(err) {
       console.error("PixiJS initialization failed:", err);
       return; // 初期化失敗時は以降の処理を中断
   }
-
 
   try {
       // --- ロゴの読み込みとアニメーション ---
@@ -126,6 +127,25 @@ export default async function initHero(targetElementId) {
             sprite.x = col * (imgWidth + spacingX);
             sprite.y = row * (imgHeight + spacingY);
             loopContainer.addChild(sprite);
+
+            // --- ★ インタラクション設定を全てのスプライトに適用 ★ ---
+            sprite.eventMode = 'static'; // イベントを受け取るように設定
+            sprite.cursor = 'pointer';   // マウスカーソルをポインターに
+
+            // 'pointerdown' イベントリスナーを追加
+            // ループ内の変数 row と col は、各リスナー関数が作成された時点の値で保持される(クロージャ)
+            sprite.on('pointerdown', () => {
+                console.log(`--- Sprite Clicked! Row: ${row}, Col: ${col} ---`); // ★ 行と列のインデックスを表示
+
+                // 簡単な視覚フィードバック
+                gsap.to(sprite, {
+                    pixi: { angle: sprite.angle + 15, scale: 1.1 },
+                    duration: 0.15,
+                    yoyo: true,
+                    repeat: 1,
+                });
+            });
+            // --- ここまで ---
 
             let group = (row % 2 === 0) ? ((col % 2 === 0) ? "D" : "C") : ((col % 2 === 0) ? "B" : "A");
             sprite.group = group;
